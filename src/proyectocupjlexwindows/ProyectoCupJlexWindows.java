@@ -18,10 +18,10 @@ public class ProyectoCupJlexWindows {
      * @param args argumentos de la linea de comando
      */
     public static void main(String[] args) {
-        
+       
         Interfaz n = new Interfaz();
         n.show();
-        n.setLocationRelativeTo(null);
+        n.setLocationRelativeTo(null); 
     }
     /**
      * Método que interpreta el contenido del archivo que se encuentra en el path

@@ -28,10 +28,25 @@ parser code
     }  
 :} 
 
-terminal String PTCOMA, Comment;
+terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER;
+terminal String MAS,MENOS,POR,DIVIDIDO;
+terminal String ENTERO;
+terminal String DECIMAL;
+terminal String UMENOS;
+terminal String REVALUAR;
+
 non terminal ini;
+non terminal instrucciones;
+non terminal instruccion;
+non terminal Double expresion;
+
 
 start with ini; 
 
-ini::= Comment {:System.out.println("El valor de la expresión es:");:};
+ini::= instrucciones;
+
+instrucciones ::= 
+    CORIZQ CORDER {:System.out.println("ANALISIS SINTACTICO EXITOSO" );:}
+;
+
 

@@ -21,23 +21,32 @@ import java_cup.runtime.Symbol;
     yychar = 1; 
 %init} 
 
+BLANCOS=[ \r\t]+
+D=[0-9]+
+DD=[0-9]+("."[  |0-9]+)?
+COMMENT = "//".+
 
-    Letra = [A-Za-z]
-    Digito = [0-9]
-    Palabra = {Letra} {Letra}*
-    LoQueSea = {Letra|Espacio}*{Letra|Espacio}*
-    Espacio = " "
-    Comment = "//".+
 %%
 
+"Evaluar" {return new Symbol(sym.REVALUAR,yyline,yychar, yytext());} 
 
 ";" {return new Symbol(sym.PTCOMA,yyline,yychar, yytext());} 
-{Comment}                      { return new Symbol(sym.Comment,yyline,yychar, yytext()); }
-{Letra}                      { /* ignore */ }
-{Palabra}                      { /* ignore */ }
-{Espacio}                      { /* ignore */ }
+"(" {return new Symbol(sym.PARIZQ,yyline,yychar, yytext());} 
+")" {return new Symbol(sym.PARDER,yyline,yychar, yytext());} 
+"[" {return new Symbol(sym.CORIZQ,yyline,yychar, yytext());} 
+"]" {return new Symbol(sym.CORDER,yyline,yychar, yytext());} 
+
+"+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
+"-" {return new Symbol(sym.MENOS,yyline,yychar, yytext());} 
+"*" {return new Symbol(sym.POR,yyline,yychar, yytext());} 
+"/" {return new Symbol(sym.DIVIDIDO,yyline,yychar, yytext());} 
 
 \n {yychar=1;}
+
+{BLANCOS} {} 
+{D} {return new Symbol(sym.ENTERO,yyline,yychar, yytext());} 
+{DD} {return new Symbol(sym.DECIMAL,yyline,yychar, yytext());} 
+{COMMENT} {} 
 
 
 

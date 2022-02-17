@@ -109,9 +109,10 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-            String ruta = "filename.txt";
+            String ruta = "entrada.txt";
         try {
             String contenido = texto.getText();
+            System.out.println("*"+contenido+"*");
             File file = new File(ruta);
             // Si el archivo no existe es creado
             if (!file.exists()) {
