@@ -40,9 +40,9 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\004\007\004\001\002\000\004\010\010\001" +
-    "\002\000\004\002\000\001\002\000\004\002\007\001\002" +
-    "\000\004\002\001\001\002\000\004\002\uffff\001\002" });
+    "\000\006\000\004\011\006\001\002\000\004\002\000\001" +
+    "\002\000\004\002\010\001\002\000\004\012\007\001\002" +
+    "\000\004\002\uffff\001\002\000\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -50,7 +50,7 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\006\002\005\003\004\001\001\000\002\001" +
+    "\000\006\000\006\002\004\003\003\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001" });
 
@@ -158,10 +158,10 @@ class CUP$Sintactico$actions {
           return CUP$Sintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // instrucciones ::= CORIZQ CORDER 
+          case 2: // instrucciones ::= LLAVEABIERTA LLAVECERRADA 
             {
               Object RESULT =null;
-		System.out.println("ANALISIS SINTACTICO EXITOSO" );
+		System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("instrucciones",1, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;

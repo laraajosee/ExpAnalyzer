@@ -21,10 +21,11 @@ import java_cup.runtime.Symbol;
     yychar = 1; 
 %init} 
 
-BLANCOS=[ \r\t]+
+BLANCOS=[ \r|\t|\n|\b|\f]
 D=[0-9]+
 DD=[0-9]+("."[  |0-9]+)?
 COMMENT = "//".+
+CMULTI = "<!"(.+|\r|\t|\n|\b|\f)+"!>"
 
 %%
 
@@ -35,6 +36,8 @@ COMMENT = "//".+
 ")" {return new Symbol(sym.PARDER,yyline,yychar, yytext());} 
 "[" {return new Symbol(sym.CORIZQ,yyline,yychar, yytext());} 
 "]" {return new Symbol(sym.CORDER,yyline,yychar, yytext());} 
+"{" {return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());} 
+"}" {return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());} 
 
 "+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
 "-" {return new Symbol(sym.MENOS,yyline,yychar, yytext());} 
@@ -47,6 +50,7 @@ COMMENT = "//".+
 {D} {return new Symbol(sym.ENTERO,yyline,yychar, yytext());} 
 {DD} {return new Symbol(sym.DECIMAL,yyline,yychar, yytext());} 
 {COMMENT} {} 
+{CMULTI} {} 
 
 
 

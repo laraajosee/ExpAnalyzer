@@ -28,7 +28,7 @@ parser code
     }  
 :} 
 
-terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER;
+terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER,LLAVEABIERTA,LLAVECERRADA;
 terminal String MAS,MENOS,POR,DIVIDIDO;
 terminal String ENTERO;
 terminal String DECIMAL;
@@ -46,7 +46,7 @@ start with ini;
 ini::= instrucciones;
 
 instrucciones ::= 
-    CORIZQ CORDER {:System.out.println("ANALISIS SINTACTICO EXITOSO" );:}
+    LLAVEABIERTA LLAVECERRADA {:System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );:}
 ;
 
 
