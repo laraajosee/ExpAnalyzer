@@ -1,4 +1,4 @@
 {
 //////Conjuntos
-CONJ: Nombre_Conjunto ->
+CONJ: Nombre_Conjunto -> |ab;
 }

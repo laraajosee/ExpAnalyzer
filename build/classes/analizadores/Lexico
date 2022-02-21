@@ -1,9 +1,3 @@
-/*
- * Ejemplo desarrollado por Erick Navarro
- * Blog: e-navarro.blogspot.com
- * Julio - 2018
- */
-
 package analizadores;
 import java_cup.runtime.Symbol; 
 
@@ -22,6 +16,8 @@ import java_cup.runtime.Symbol;
 %init} 
 
 BLANCOS=[ \r|\t|\n|\b|\f]
+CONCA = ("."*[A-Z][A-Z])
+DISY = ("|"*[A-Z][A-Z])
 IDENTIFICADOR = [a-zA-Z0-9_]+
 D=[0-9]+
 DD=[0-9]+("."[  |0-9]+)?
@@ -55,7 +51,9 @@ FLECHA = "->"
 {D} {return new Symbol(sym.ENTERO,yyline,yychar, yytext());} 
 {DD} {return new Symbol(sym.DECIMAL,yyline,yychar, yytext());} 
 {IDENTIFICADOR} {return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());} 
-{FLECHA} {return new Symbol(sym.FLECHA,yyline,yychar, yytext());} 
+{FLECHA} {return new Symbol(sym.FLECHA,yyline,yychar, yytext());}
+{CONCA} {return new Symbol(sym.CONCA,yyline,yychar, yytext());} 
+{DISY} {return new Symbol(sym.DISY,yyline,yychar, yytext());} 
 {COMMENT} {} 
 {CMULTI} {} 
 

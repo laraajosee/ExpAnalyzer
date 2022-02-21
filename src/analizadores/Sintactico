@@ -32,12 +32,12 @@ terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER,LLAVEABIERTA,LLAVECERRADA;
 terminal String MAS,MENOS,POR,DIVIDIDO;
 terminal String ENTERO;
 terminal String DECIMAL;
-terminal String UMENOS;
-terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA;
+terminal String UMENOS, DISY;
+terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA, CONCA;
 
 non terminal ini;
 non terminal instrucciones;
-non terminal instruccion, conjuntos;
+non terminal instruccion, conjuntos, notacion;
 non terminal Double expresion;
 
 
@@ -48,6 +48,9 @@ ini::= instrucciones;
 instrucciones ::= 
     LLAVEABIERTA conjuntos LLAVECERRADA {:System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );:}
 ;
-conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA;
+conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA;
 
+notacion::= CONCA
+           | DISY
+ ;
 

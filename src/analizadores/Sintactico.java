@@ -31,8 +31,9 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\004\000\002\002\004\000\002\002\003\000\002\003" +
-    "\005\000\002\005\006" });
+    "\000\006\000\002\002\004\000\002\002\003\000\002\003" +
+    "\005\000\002\005\010\000\002\006\003\000\002\006\003" +
+    "" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -40,10 +41,12 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\013\000\004\011\006\001\002\000\004\002\000\001" +
-    "\002\000\004\002\015\001\002\000\004\023\010\001\002" +
-    "\000\004\012\014\001\002\000\004\024\011\001\002\000" +
-    "\004\025\012\001\002\000\004\026\013\001\002\000\004" +
+    "\000\017\000\004\011\006\001\002\000\004\002\000\001" +
+    "\002\000\004\002\021\001\002\000\004\024\010\001\002" +
+    "\000\004\012\020\001\002\000\004\025\011\001\002\000" +
+    "\004\026\012\001\002\000\004\027\013\001\002\000\006" +
+    "\022\016\030\015\001\002\000\004\004\017\001\002\000" +
+    "\004\004\ufffd\001\002\000\004\004\ufffc\001\002\000\004" +
     "\012\ufffe\001\002\000\004\002\uffff\001\002\000\004\002" +
     "\001\001\002" });
 
@@ -53,11 +56,12 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\013\000\006\002\004\003\003\001\001\000\002\001" +
+    "\000\017\000\006\002\004\003\003\001\001\000\002\001" +
     "\001\000\002\001\001\000\004\005\006\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "" });
+    "\001\000\004\006\013\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -172,11 +176,29 @@ class CUP$Sintactico$actions {
           return CUP$Sintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // conjuntos ::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA 
+          case 3: // conjuntos ::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA 
             {
               Object RESULT =null;
 
-              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("conjuntos",3, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("conjuntos",3, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // notacion ::= CONCA 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("notacion",4, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // notacion ::= DISY 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("notacion",4, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
 
