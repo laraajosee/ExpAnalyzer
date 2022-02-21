@@ -8,23 +8,27 @@ package analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int DECIMAL = 14;
   public static final int MENOS = 10;
-  public static final int CORIZQ = 5;
-  public static final int UMENOS = 15;
-  public static final int ENTERO = 13;
-  public static final int POR = 11;
-  public static final int CORDER = 6;
-  public static final int PTCOMA = 2;
+  public static final int DOSPUNTOS = 18;
+  public static final int DECIMAL = 14;
   public static final int DIVIDIDO = 12;
+  public static final int REVALUAR = 16;
+  public static final int PARIZQ = 3;
+  public static final int FLECHA = 20;
+  public static final int PARDER = 4;
+  public static final int UMENOS = 15;
+  public static final int POR = 11;
   public static final int EOF = 0;
+  public static final int LLAVEABIERTA = 7;
+  public static final int CONJ = 17;
+  public static final int error = 1;
+  public static final int IDENTIFICADOR = 19;
+  public static final int CORIZQ = 5;
+  public static final int ENTERO = 13;
+  public static final int CORDER = 6;
   public static final int MAS = 9;
   public static final int LLAVECERRADA = 8;
-  public static final int PARIZQ = 3;
-  public static final int error = 1;
-  public static final int PARDER = 4;
-  public static final int LLAVEABIERTA = 7;
-  public static final int REVALUAR = 16;
+  public static final int PTCOMA = 2;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -42,7 +46,11 @@ public class sym {
   "ENTERO",
   "DECIMAL",
   "UMENOS",
-  "REVALUAR"
+  "REVALUAR",
+  "CONJ",
+  "DOSPUNTOS",
+  "IDENTIFICADOR",
+  "FLECHA"
   };
 }
 

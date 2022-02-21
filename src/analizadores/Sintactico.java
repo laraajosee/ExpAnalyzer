@@ -31,8 +31,8 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\003\000\002\002\004\000\002\002\003\000\002\003" +
-    "\004" });
+    "\000\004\000\002\002\004\000\002\002\003\000\002\003" +
+    "\005\000\002\005\006" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -40,9 +40,12 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\004\011\006\001\002\000\004\002\000\001" +
-    "\002\000\004\002\010\001\002\000\004\012\007\001\002" +
-    "\000\004\002\uffff\001\002\000\004\002\001\001\002" });
+    "\000\013\000\004\011\006\001\002\000\004\002\000\001" +
+    "\002\000\004\002\015\001\002\000\004\023\010\001\002" +
+    "\000\004\012\014\001\002\000\004\024\011\001\002\000" +
+    "\004\025\012\001\002\000\004\026\013\001\002\000\004" +
+    "\012\ufffe\001\002\000\004\002\uffff\001\002\000\004\002" +
+    "\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -50,9 +53,11 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\006\002\004\003\003\001\001\000\002\001" +
+    "\000\013\000\006\002\004\003\003\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\005\006\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001" });
+    "" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -158,11 +163,20 @@ class CUP$Sintactico$actions {
           return CUP$Sintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // instrucciones ::= LLAVEABIERTA LLAVECERRADA 
+          case 2: // instrucciones ::= LLAVEABIERTA conjuntos LLAVECERRADA 
             {
               Object RESULT =null;
 		System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );
-              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("instrucciones",1, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("instrucciones",1, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // conjuntos ::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("conjuntos",3, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
 

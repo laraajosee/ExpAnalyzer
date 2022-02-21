@@ -33,11 +33,11 @@ terminal String MAS,MENOS,POR,DIVIDIDO;
 terminal String ENTERO;
 terminal String DECIMAL;
 terminal String UMENOS;
-terminal String REVALUAR;
+terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA;
 
 non terminal ini;
 non terminal instrucciones;
-non terminal instruccion;
+non terminal instruccion, conjuntos;
 non terminal Double expresion;
 
 
@@ -46,7 +46,8 @@ start with ini;
 ini::= instrucciones;
 
 instrucciones ::= 
-    LLAVEABIERTA LLAVECERRADA {:System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );:}
+    LLAVEABIERTA conjuntos LLAVECERRADA {:System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );:}
 ;
+conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA;
 
 

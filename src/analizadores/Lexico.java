@@ -236,32 +236,45 @@ public class Lexico implements java_cup.runtime.Scanner {
 		/* 18 */ YY_NO_ANCHOR,
 		/* 19 */ YY_NO_ANCHOR,
 		/* 20 */ YY_NO_ANCHOR,
-		/* 21 */ YY_NOT_ACCEPT,
+		/* 21 */ YY_NO_ANCHOR,
 		/* 22 */ YY_NO_ANCHOR,
-		/* 23 */ YY_NOT_ACCEPT,
+		/* 23 */ YY_NO_ANCHOR,
 		/* 24 */ YY_NO_ANCHOR,
 		/* 25 */ YY_NOT_ACCEPT,
-		/* 26 */ YY_NOT_ACCEPT,
-		/* 27 */ YY_NOT_ACCEPT,
+		/* 26 */ YY_NO_ANCHOR,
+		/* 27 */ YY_NO_ANCHOR,
 		/* 28 */ YY_NOT_ACCEPT,
-		/* 29 */ YY_NOT_ACCEPT,
+		/* 29 */ YY_NO_ANCHOR,
 		/* 30 */ YY_NOT_ACCEPT,
 		/* 31 */ YY_NOT_ACCEPT,
-		/* 32 */ YY_NOT_ACCEPT
+		/* 32 */ YY_NO_ANCHOR,
+		/* 33 */ YY_NOT_ACCEPT,
+		/* 34 */ YY_NO_ANCHOR,
+		/* 35 */ YY_NO_ANCHOR,
+		/* 36 */ YY_NO_ANCHOR,
+		/* 37 */ YY_NO_ANCHOR,
+		/* 38 */ YY_NO_ANCHOR,
+		/* 39 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,65538,
-"23:8,24:2,18,23,24,19,23:18,22,26,23:6,8,9,16,14,23,15,21,17,20:10,23,7,25," +
-"23,27,23:2,3,23:3,1,23:6,4,23:5,6,23:2,5,2,23:4,10,23,11,23:3,3,23:3,1,23:6" +
-",4,23:5,6,23:2,5,2,23:4,12,22,13,23:65410,0:2")[0];
+"30:8,31:2,23,30,31,24,30:18,27,33,30:6,13,14,21,19,30,20,26,22,25:10,11,12," +
+"32,30,29,30:2,3,28,7,28,1,28:4,10,28,4,28,9,8,28:2,6,28:2,5,2,28:4,15,30,16" +
+",30,28,30,3,28,7,28,1,28:4,10,28,4,28,9,8,28:2,6,28:2,5,2,28:4,17,27,18,30:" +
+"65410,0:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,33,
-"0,1,2,1:10,3,1:2,4,5,6,7,1,8,1,5,9,6,10,11,12,13,14,15,7")[0];
+	private int yy_rmap[] = unpackFromString(1,40,
+"0,1,2,1:9,3,1,4,1:2,5,1:2,6,7,8,9,8,6,10,11,7,12,13,14,15,9,16,17,18,19,20," +
+"8")[0];
 
-	private int yy_nxt[][] = unpackFromString(16,28,
-"1,2,22:5,3,4,5,6,7,8,9,10,11,12,13,14,15,16,22,15,22,15,24,22:2,-1:30,21,-1" +
-":42,23,-1:30,16,25,-1:7,17:17,-1:2,17:8,-1:20,18,-1,18,-1:6,32:25,29,32,-1:" +
-"3,27,-1:50,26,-1:2,32:27,-1:4,28,-1:28,30,-1:23,32:25,29,19,-1:3,31,-1:30,2" +
-"0,-1:21");
+	private int yy_nxt[][] = unpackFromString(21,34,
+"1,2,39:5,35,39:3,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,16,39,18:2,16,27," +
+"18,-1:35,39,38,39:8,-1:14,39,-1:2,39,-1:34,19,-1:26,25,-1:12,39:10,-1:14,17" +
+",28,-1,39,-1:6,20:22,-1:2,20:9,-1:25,21,-1,21,-1:7,39:10,-1:14,39,-1:2,39,-" +
+"1:6,33:32,31,-1,39:9,22,-1:14,39,-1:2,39,-1:38,30,-1,39:5,24,39:4,-1:14,39," +
+"-1:2,39,-1:6,33:33,-1,33:28,23,33:3,31,-1,39:8,26,39,-1:14,39,-1:2,39,-1:6," +
+"39:2,29,39:7,-1:14,39,-1:2,39,-1:6,39:7,32,39:2,-1:14,39,-1:2,39,-1:6,39:4," +
+"34,39:5,-1:14,39,-1:2,39,-1:6,39:3,36,39:6,-1:14,39,-1:2,39,-1:6,39:2,37,39" +
+":7,-1:14,39,-1:2,39,-1:5");
 
 	public java_cup.runtime.Symbol next_token ()
 		throws java.io.IOException {
@@ -312,97 +325,142 @@ public class Lexico implements java_cup.runtime.Scanner {
 					case -2:
 						break;
 					case 2:
-						{
-    System.out.println("Este es un error lexico: "+yytext()+", en la linea: "
-    +yyline+", en la columna: "+yychar);
-}
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
 					case -3:
 						break;
 					case 3:
-						{return new Symbol(sym.PTCOMA,yyline,yychar, yytext());}
+						{return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());}
 					case -4:
 						break;
 					case 4:
-						{return new Symbol(sym.PARIZQ,yyline,yychar, yytext());}
+						{return new Symbol(sym.PTCOMA,yyline,yychar, yytext());}
 					case -5:
 						break;
 					case 5:
-						{return new Symbol(sym.PARDER,yyline,yychar, yytext());}
+						{return new Symbol(sym.PARIZQ,yyline,yychar, yytext());}
 					case -6:
 						break;
 					case 6:
-						{return new Symbol(sym.CORIZQ,yyline,yychar, yytext());}
+						{return new Symbol(sym.PARDER,yyline,yychar, yytext());}
 					case -7:
 						break;
 					case 7:
-						{return new Symbol(sym.CORDER,yyline,yychar, yytext());}
+						{return new Symbol(sym.CORIZQ,yyline,yychar, yytext());}
 					case -8:
 						break;
 					case 8:
-						{return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());}
+						{return new Symbol(sym.CORDER,yyline,yychar, yytext());}
 					case -9:
 						break;
 					case 9:
-						{return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());}
+						{return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());}
 					case -10:
 						break;
 					case 10:
-						{return new Symbol(sym.MAS,yyline,yychar, yytext());}
+						{return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());}
 					case -11:
 						break;
 					case 11:
-						{return new Symbol(sym.MENOS,yyline,yychar, yytext());}
+						{return new Symbol(sym.MAS,yyline,yychar, yytext());}
 					case -12:
 						break;
 					case 12:
-						{return new Symbol(sym.POR,yyline,yychar, yytext());}
+						{return new Symbol(sym.MENOS,yyline,yychar, yytext());}
 					case -13:
 						break;
 					case 13:
-						{return new Symbol(sym.DIVIDIDO,yyline,yychar, yytext());}
+						{return new Symbol(sym.POR,yyline,yychar, yytext());}
 					case -14:
 						break;
 					case 14:
-						{yychar=1;}
+						{return new Symbol(sym.DIVIDIDO,yyline,yychar, yytext());}
 					case -15:
 						break;
 					case 15:
-						{}
+						{yychar=1;}
 					case -16:
 						break;
 					case 16:
-						{return new Symbol(sym.ENTERO,yyline,yychar, yytext());}
+						{}
 					case -17:
 						break;
 					case 17:
-						{}
+						{return new Symbol(sym.ENTERO,yyline,yychar, yytext());}
 					case -18:
 						break;
 					case 18:
-						{return new Symbol(sym.DECIMAL,yyline,yychar, yytext());}
+						{
+    System.out.println("Este es un error lexico: "+yytext()+", en la linea: "
+    +yyline+", en la columna: "+yychar);
+}
 					case -19:
 						break;
 					case 19:
-						{}
+						{return new Symbol(sym.FLECHA,yyline,yychar, yytext());}
 					case -20:
 						break;
 					case 20:
-						{return new Symbol(sym.REVALUAR,yyline,yychar, yytext());}
+						{}
 					case -21:
 						break;
-					case 22:
-						{
-    System.out.println("Este es un error lexico: "+yytext()+", en la linea: "
-    +yyline+", en la columna: "+yychar);
-}
+					case 21:
+						{return new Symbol(sym.DECIMAL,yyline,yychar, yytext());}
 					case -22:
 						break;
+					case 22:
+						{return new Symbol(sym.CONJ,yyline,yychar, yytext());}
+					case -23:
+						break;
+					case 23:
+						{}
+					case -24:
+						break;
 					case 24:
+						{return new Symbol(sym.REVALUAR,yyline,yychar, yytext());}
+					case -25:
+						break;
+					case 26:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -26:
+						break;
+					case 27:
 						{
     System.out.println("Este es un error lexico: "+yytext()+", en la linea: "
     +yyline+", en la columna: "+yychar);
 }
-					case -23:
+					case -27:
+						break;
+					case 29:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -28:
+						break;
+					case 32:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -29:
+						break;
+					case 34:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -30:
+						break;
+					case 35:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -31:
+						break;
+					case 36:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -32:
+						break;
+					case 37:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -33:
+						break;
+					case 38:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -34:
+						break;
+					case 39:
+						{return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+					case -35:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);

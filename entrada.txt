@@ -1,3 +1,4 @@
-{} //ASDASD
-<! asdas
-asdas 		DSSDad !>
+{
+//////Conjuntos
+CONJ: Nombre_Conjunto ->
+}
