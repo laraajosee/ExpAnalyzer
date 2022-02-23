@@ -29,15 +29,15 @@ parser code
 :} 
 
 terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER,LLAVEABIERTA,LLAVECERRADA;
-terminal String MAS,MENOS,POR,DIVIDIDO;
+terminal String MAS,MENOS,ASTERISCO,DIVIDIDO;
 terminal String ENTERO;
 terminal String DECIMAL;
-terminal String UMENOS, DISY;
-terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA, CONCA;
+terminal String UMENOS, DISY, PLUS, MARK, CONJMIN, CONMAY, CONNUM, NUMEROS, LETRAS, SIMBOLO;
+terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA, CONCA, STAR, PUNTO;
 
 non terminal ini;
 non terminal instrucciones;
-non terminal instruccion, conjuntos, notacion;
+non terminal instruccion, conjuntos, notacion,expresionesRegulares, regular;
 non terminal Double expresion;
 
 
@@ -46,11 +46,31 @@ start with ini;
 ini::= instrucciones;
 
 instrucciones ::= 
-    LLAVEABIERTA conjuntos LLAVECERRADA {:System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );:}
+    LLAVEABIERTA conjuntos expresionesRegulares LLAVECERRADA {:System.out.println("ANALISIS SINTACTICO EXITOSO \n *****************" );:}
 ;
-conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA;
+conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA
+            |CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA conjuntos
+;
 
 notacion::= CONCA
            | DISY
+           | STAR
+           | PLUS
+           | MARK
+           | CONJMIN
+           | CONMAY
+           | CONNUM
+           | NUMEROS
+           | LETRAS
+           | SIMBOLO
  ;
 
+expresionesRegulares ::= IDENTIFICADOR FLECHA PUNTO regular PTCOMA
+           | IDENTIFICADOR FLECHA PUNTO regular PTCOMA expresionesRegulares
+;
+
+regular ::=  LLAVEABIERTA IDENTIFICADOR LLAVECERRADA regular
+           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA
+           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA ASTERISCO
+           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA ASTERISCO regular
+;

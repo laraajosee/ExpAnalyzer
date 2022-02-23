@@ -8,7 +8,6 @@ import java_cup.runtime.Symbol;
 %char 
 %cup 
 %unicode
-%ignorecase
 
 %init{ 
     yyline = 1; 
@@ -16,9 +15,19 @@ import java_cup.runtime.Symbol;
 %init} 
 
 BLANCOS=[ \r|\t|\n|\b|\f]
-CONCA = ("."*[A-Z][A-Z])
-DISY = ("|"*[A-Z][A-Z])
+CONCA = ("."[a-z][a-z])
+DISY = ("|"[a-z][a-z])
+STAR = ("*"[a-z])
+PLUS = ("+"[a-z])  
+MARK = ("?"[a-z])
+CONJMIN = ([a-z]"~"[a-z])
+CONMAY = ([A-Z]"~"[A-Z])
+CONNUM = ([0-9]"~"[0-9])
+NUMEROS = ([0-9](","[0-9])*) 
+LETRAS = ([A-Za-z](","[A-Za-z])*) 
 IDENTIFICADOR = [a-zA-Z0-9_]+
+SIMBOLO = ([\!-\}]"~"[\!-\}])
+COMILLAS = ([\!-\}]"~"[\!-\}])
 D=[0-9]+
 DD=[0-9]+("."[  |0-9]+)?
 COMMENT = "//".+
@@ -42,8 +51,9 @@ FLECHA = "->"
 
 "+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
 "-" {return new Symbol(sym.MENOS,yyline,yychar, yytext());} 
-"*" {return new Symbol(sym.POR,yyline,yychar, yytext());} 
+"*" {return new Symbol(sym.ASTERISCO,yyline,yychar, yytext());} 
 "/" {return new Symbol(sym.DIVIDIDO,yyline,yychar, yytext());} 
+"." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
 
 \n {yychar=1;}
 
@@ -54,6 +64,15 @@ FLECHA = "->"
 {FLECHA} {return new Symbol(sym.FLECHA,yyline,yychar, yytext());}
 {CONCA} {return new Symbol(sym.CONCA,yyline,yychar, yytext());} 
 {DISY} {return new Symbol(sym.DISY,yyline,yychar, yytext());} 
+{STAR} {return new Symbol(sym.DISY,yyline,yychar, yytext());} 
+{PLUS} {return new Symbol(sym.PLUS,yyline,yychar, yytext());}
+{MARK} {return new Symbol(sym.MARK,yyline,yychar, yytext());}
+{CONJMIN} {return new Symbol(sym.CONJMIN,yyline,yychar, yytext());}
+{CONMAY} {return new Symbol(sym.CONMAY,yyline,yychar, yytext());}
+{CONNUM} {return new Symbol(sym.CONNUM,yyline,yychar, yytext());}
+{NUMEROS} {return new Symbol(sym.NUMEROS,yyline,yychar, yytext());}
+{LETRAS} {return new Symbol(sym.LETRAS,yyline,yychar, yytext());}
+{SIMBOLO} {return new Symbol(sym.LETRAS,yyline,yychar, yytext());}
 {COMMENT} {} 
 {CMULTI} {} 
 
