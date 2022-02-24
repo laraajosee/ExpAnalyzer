@@ -31,13 +31,16 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\026\000\002\002\004\000\002\002\003\000\002\003" +
+    "\000\036\000\002\002\004\000\002\002\003\000\002\003" +
     "\006\000\002\005\010\000\002\005\011\000\002\006\003" +
     "\000\002\006\003\000\002\006\003\000\002\006\003\000" +
     "\002\006\003\000\002\006\003\000\002\006\003\000\002" +
     "\006\003\000\002\006\003\000\002\006\003\000\002\006" +
     "\003\000\002\007\007\000\002\007\010\000\002\010\006" +
-    "\000\002\010\005\000\002\010\006\000\002\010\007" });
+    "\000\002\010\005\000\002\010\006\000\002\010\007\000" +
+    "\002\010\010\000\002\010\007\000\002\010\004\000\002" +
+    "\010\003\000\002\010\004\000\002\010\005\000\002\010" +
+    "\006\000\002\010\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -45,25 +48,33 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\046\000\004\011\006\001\002\000\004\002\000\001" +
-    "\002\000\004\002\050\001\002\000\004\034\010\001\002" +
-    "\000\004\036\032\001\002\000\004\035\011\001\002\000" +
-    "\004\036\012\001\002\000\004\037\013\001\002\000\030" +
-    "\022\021\023\026\024\017\025\020\026\024\027\016\030" +
-    "\023\031\014\032\027\040\022\041\025\001\002\000\004" +
+    "\000\062\000\004\011\006\001\002\000\004\002\000\001" +
+    "\002\000\004\002\064\001\002\000\004\035\010\001\002" +
+    "\000\004\037\032\001\002\000\004\036\011\001\002\000" +
+    "\004\037\012\001\002\000\004\040\013\001\002\000\030" +
+    "\023\021\024\026\025\017\026\020\027\024\030\016\031" +
+    "\023\032\014\033\027\041\022\042\025\001\002\000\004" +
     "\004\ufff3\001\002\000\004\004\030\001\002\000\004\004" +
     "\ufff5\001\002\000\004\004\ufff8\001\002\000\004\004\ufff7" +
     "\001\002\000\004\004\ufffb\001\002\000\004\004\ufffc\001" +
     "\002\000\004\004\ufff4\001\002\000\004\004\ufff6\001\002" +
     "\000\004\004\ufffa\001\002\000\004\004\ufff9\001\002\000" +
-    "\004\004\ufff2\001\002\000\006\034\010\036\ufffe\001\002" +
-    "\000\004\036\ufffd\001\002\000\004\037\035\001\002\000" +
+    "\004\004\ufff2\001\002\000\006\035\010\037\ufffe\001\002" +
+    "\000\004\037\ufffd\001\002\000\004\040\035\001\002\000" +
     "\004\012\034\001\002\000\004\002\uffff\001\002\000\004" +
-    "\042\036\001\002\000\004\011\040\001\002\000\004\004" +
-    "\046\001\002\000\004\036\041\001\002\000\004\012\042" +
-    "\001\002\000\010\004\uffee\011\040\015\043\001\002\000" +
-    "\006\004\uffed\011\040\001\002\000\004\004\uffef\001\002" +
-    "\000\004\004\uffec\001\002\000\006\012\ufff1\036\032\001" +
+    "\043\036\001\002\000\006\011\041\044\040\001\002\000" +
+    "\004\004\062\001\002\000\014\004\uffe8\011\041\015\053" +
+    "\021\055\044\040\001\002\000\004\037\042\001\002\000" +
+    "\004\012\043\001\002\000\014\004\uffee\011\041\015\044" +
+    "\021\046\044\040\001\002\000\012\004\uffed\011\041\021" +
+    "\051\044\040\001\002\000\004\004\uffef\001\002\000\006" +
+    "\011\041\044\040\001\002\000\004\004\uffea\001\002\000" +
+    "\004\004\uffec\001\002\000\006\011\041\044\040\001\002" +
+    "\000\004\004\uffeb\001\002\000\012\004\uffe7\011\041\021" +
+    "\060\044\040\001\002\000\004\004\uffe9\001\002\000\006" +
+    "\011\041\044\040\001\002\000\004\004\uffe4\001\002\000" +
+    "\004\004\uffe6\001\002\000\006\011\041\044\040\001\002" +
+    "\000\004\004\uffe5\001\002\000\006\012\ufff1\037\032\001" +
     "\002\000\004\012\ufff0\001\002\000\004\002\001\001\002" +
     "" });
 
@@ -73,7 +84,7 @@ public class Sintactico extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\046\000\006\002\004\003\003\001\001\000\002\001" +
+    "\000\062\000\006\002\004\003\003\001\001\000\002\001" +
     "\001\000\002\001\001\000\004\005\006\001\001\000\004" +
     "\007\032\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\004\006\014\001\001\000\002\001\001" +
@@ -83,10 +94,15 @@ public class Sintactico extends java_cup.runtime.lr_parser {
     "\001\000\002\001\001\000\004\005\030\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\004\010\036\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\010" +
-    "\043\001\001\000\004\010\044\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\007\046\001\001\000\002\001" +
-    "\001\000\002\001\001" });
+    "\001\001\000\004\010\053\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\010\044\001\001\000\004\010\047" +
+    "\001\001\000\002\001\001\000\004\010\046\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\010\051\001\001" +
+    "\000\002\001\001\000\004\010\056\001\001\000\002\001" +
+    "\001\000\004\010\055\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\010\060\001\001\000\002\001\001\000" +
+    "\004\007\062\001\001\000\002\001\001\000\002\001\001" +
+    "" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -368,6 +384,78 @@ class CUP$Sintactico$actions {
               Object RESULT =null;
 
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 22: // regular ::= LLAVEABIERTA IDENTIFICADOR LLAVECERRADA ASTERISCO OR regular 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 23: // regular ::= LLAVEABIERTA IDENTIFICADOR LLAVECERRADA OR regular 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 24: // regular ::= CARACTER regular 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // regular ::= CARACTER 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 26: // regular ::= CARACTER ASTERISCO 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 27: // regular ::= CARACTER ASTERISCO regular 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 28: // regular ::= CARACTER ASTERISCO OR regular 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
+            }
+          return CUP$Sintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 29: // regular ::= CARACTER OR regular 
+            {
+              Object RESULT =null;
+
+              CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("regular",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
 

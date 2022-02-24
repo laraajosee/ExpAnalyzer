@@ -9,35 +9,37 @@ package analizadores;
 public class sym {
   /* terminals */
   public static final int MENOS = 10;
-  public static final int PUNTO = 32;
-  public static final int DOSPUNTOS = 27;
-  public static final int PLUS = 17;
+  public static final int PUNTO = 33;
+  public static final int DOSPUNTOS = 28;
+  public static final int PLUS = 18;
+  public static final int OR = 15;
   public static final int DECIMAL = 14;
-  public static final int STAR = 31;
+  public static final int STAR = 32;
   public static final int DIVIDIDO = 12;
-  public static final int REVALUAR = 25;
+  public static final int REVALUAR = 26;
   public static final int PARIZQ = 3;
-  public static final int FLECHA = 29;
+  public static final int FLECHA = 30;
   public static final int PARDER = 4;
-  public static final int CONNUM = 21;
-  public static final int UMENOS = 15;
-  public static final int NUMEROS = 22;
+  public static final int CONNUM = 22;
+  public static final int UMENOS = 16;
+  public static final int CARACTER = 34;
+  public static final int NUMEROS = 23;
   public static final int EOF = 0;
   public static final int ASTERISCO = 11;
   public static final int LLAVEABIERTA = 7;
-  public static final int CONJ = 26;
-  public static final int SIMBOLO = 24;
-  public static final int CONCA = 30;
-  public static final int CONJMIN = 19;
+  public static final int CONJ = 27;
+  public static final int SIMBOLO = 25;
+  public static final int CONCA = 31;
+  public static final int CONJMIN = 20;
   public static final int error = 1;
-  public static final int CONMAY = 20;
-  public static final int MARK = 18;
-  public static final int IDENTIFICADOR = 28;
+  public static final int CONMAY = 21;
+  public static final int MARK = 19;
+  public static final int IDENTIFICADOR = 29;
   public static final int CORIZQ = 5;
   public static final int ENTERO = 13;
-  public static final int DISY = 16;
+  public static final int DISY = 17;
   public static final int CORDER = 6;
-  public static final int LETRAS = 23;
+  public static final int LETRAS = 24;
   public static final int MAS = 9;
   public static final int LLAVECERRADA = 8;
   public static final int PTCOMA = 2;
@@ -57,6 +59,7 @@ public class sym {
   "DIVIDIDO",
   "ENTERO",
   "DECIMAL",
+  "OR",
   "UMENOS",
   "DISY",
   "PLUS",
@@ -74,7 +77,8 @@ public class sym {
   "FLECHA",
   "CONCA",
   "STAR",
-  "PUNTO"
+  "PUNTO",
+  "CARACTER"
   };
 }
 
