@@ -32,12 +32,12 @@ terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER,LLAVEABIERTA,LLAVECERRADA;
 terminal String MAS,MENOS,ASTERISCO,DIVIDIDO;
 terminal String ENTERO;
 terminal String DECIMAL, OR, INTERROGACION;
-terminal String UMENOS, DISY, PLUS, MARK, CONJMIN, CONMAY, CONNUM, NUMEROS, LETRAS, SIMBOLO;
+terminal String UMENOS, DISY, PLUS, MARK, CONJMIN, CONMAY, CONNUM, NUMEROS, LETRAS, SIMBOLO, LEXEMA;
 terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA, CONCA, STAR, PUNTO, CARACTER, DPORCENTAJE;
 
 non terminal ini;
 non terminal instrucciones;
-non terminal instruccion, conjuntos, notacion,expresionesRegulares, regular;
+non terminal instruccion, conjuntos, notacion,expresionesRegulares, regular, expreg;
 non terminal Double expresion;
 
 
@@ -46,7 +46,7 @@ start with ini;
 ini::= instrucciones;
 
 instrucciones ::= 
-    LLAVEABIERTA conjuntos expresionesRegulares DPORCENTAJE DPORCENTAJE  LLAVECERRADA  {:System.out.println("ANALISIS  EXITOSO \n *******************" );:}
+    LLAVEABIERTA conjuntos expresionesRegulares DPORCENTAJE DPORCENTAJE expreg  LLAVECERRADA  {:System.out.println("ANALISIS  EXITOSO \n *******************" );:}
 ;
 conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA
             |CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA conjuntos
@@ -88,4 +88,7 @@ regular ::=  LLAVEABIERTA IDENTIFICADOR LLAVECERRADA regular
            | CARACTER INTERROGACION PUNTO regular 
            | CARACTER INTERROGACION
 
+;
+
+expreg ::= IDENTIFICADOR DOSPUNTOS LEXEMA
 ;

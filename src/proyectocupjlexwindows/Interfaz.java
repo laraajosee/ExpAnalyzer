@@ -109,23 +109,30 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-            String ruta = "entrada.txt";
-        try {
-            String contenido = texto.getText();
-            System.out.println("*"+contenido+"*");
-            File file = new File(ruta);
-            // Si el archivo no existe es creado
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(contenido);
-            bw.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        interpretar(ruta);
+//            String ruta = "entrada.txt";
+//        try {
+//            String contenido = texto.getText();
+//            System.out.println("*"+contenido+"*");
+//            File file = new File(ruta);
+//            // Si el archivo no existe es creado
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+//            FileWriter fw = new FileWriter(file);
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            bw.write(contenido);
+//            bw.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        interpretar(ruta);
+        
+        Arbol arbol = new Arbol();
+        arbol.agregar(1);
+        arbol.agregar(2);
+        arbol.agregar(3);
+        arbol.agregar(4);
+        arbol.imprimir();
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

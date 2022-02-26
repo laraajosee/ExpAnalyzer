@@ -33,6 +33,7 @@ COMMENT = "//".+
 CMULTI = "<!"(.+|\r|\t|\n|\b|\f)+"!>"
 FLECHA = "->"
 CARACTER = ((\".\"))
+LEXEMA = \".+\"
 
 %%
 
@@ -78,6 +79,7 @@ CARACTER = ((\".\"))
 {LETRAS} {return new Symbol(sym.LETRAS,yyline,yychar, yytext());}
 {SIMBOLO} {return new Symbol(sym.LETRAS,yyline,yychar, yytext());}
 {CARACTER} {return new Symbol(sym.CARACTER,yyline,yychar, yytext());}
+{LEXEMA} {return new Symbol(sym.LEXEMA,yyline,yychar, yytext());}
 {COMMENT} {} 
 {CMULTI} {} 
 

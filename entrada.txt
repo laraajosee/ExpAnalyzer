@@ -19,4 +19,6 @@ ExpReg1 ->. {Nombre_Conjunto}? . "_"? ;
 ExpReg1 ->. {Nombre_Conjunto}? ;
 %%
 %%
+
+ExpReg1: "primerLExema"
 }
