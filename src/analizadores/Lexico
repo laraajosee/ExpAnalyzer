@@ -55,6 +55,9 @@ CARACTER = ((\".\"))
 "/" {return new Symbol(sym.DIVIDIDO,yyline,yychar, yytext());} 
 "." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
 "|" {return new Symbol(sym.OR,yyline,yychar, yytext());}
+"?" {return new Symbol(sym.INTERROGACION,yyline,yychar, yytext());}
+"%%" {return new Symbol(sym.DPORCENTAJE,yyline,yychar, yytext());}
+
 
 \n {yychar=1;}
 
