@@ -19,10 +19,11 @@ COMMENT = "//".+
 CMULTI = "<!"[^"<!"]*"!>"
 LETRA = [a-zA-Z_]
 NUMERO = [0-9]
+SIMBOLOS = [\!-\}]
 
 %%
 
-
+";" {return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
 "{" {return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());} 
 "-" {return new Symbol(sym.GUION,yyline,yychar, yytext());}
 ">" {return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}  
@@ -30,8 +31,14 @@ NUMERO = [0-9]
 "CONJ" {return new Symbol(sym.CONJ,yyline,yychar, yytext());} 
 {LETRA} {return new Symbol(sym.LETRA,yyline,yychar, yytext());}
 {NUMERO} {return new Symbol(sym.NUMERO,yyline,yychar, yytext());}
-";" {return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
+{SIMBOLOS} {return new Symbol(sym.SIMBOLOS,yyline,yychar, yytext());}
 "~" {return new Symbol(sym.TILDE,yyline,yychar, yytext());} 
+"," {return new Symbol(sym.COMA,yyline,yychar, yytext());} 
+"*" {return new Symbol(sym.ASTERISCO,yyline,yychar, yytext());} 
+"+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
+"." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());} 
+"?" {return new Symbol(sym.INTERROGACION,yyline,yychar, yytext());} 
+"|" {return new Symbol(sym.OR,yyline,yychar, yytext());} 
 
 
 

@@ -8,19 +8,26 @@ package analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int INTERROGACION = 17;
+  public static final int GUION = 6;
+  public static final int PUNTO = 14;
   public static final int DOSPUNTOS = 5;
+  public static final int OR = 16;
   public static final int LETRA = 4;
-  public static final int CONJ = 3;
-  public static final int MAYUSCULA = 12;
-  public static final int EOF = 0;
   public static final int MAYORQUE = 7;
   public static final int TILDE = 9;
-  public static final int NUMERO = 10;
-  public static final int GUION = 6;
-  public static final int error = 1;
-  public static final int PUNTOCOMA = 8;
-  public static final int LLAVEABIERTA = 2;
   public static final int MINUSCULA = 11;
+  public static final int COMA = 13;
+  public static final int EOF = 0;
+  public static final int ASTERISCO = 15;
+  public static final int LLAVEABIERTA = 2;
+  public static final int CONJ = 3;
+  public static final int SIMBOLOS = 19;
+  public static final int error = 1;
+  public static final int NUMERO = 10;
+  public static final int MAYUSCULA = 12;
+  public static final int PUNTOCOMA = 8;
+  public static final int MAS = 18;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -34,7 +41,14 @@ public class sym {
   "TILDE",
   "NUMERO",
   "MINUSCULA",
-  "MAYUSCULA"
+  "MAYUSCULA",
+  "COMA",
+  "PUNTO",
+  "ASTERISCO",
+  "OR",
+  "INTERROGACION",
+  "MAS",
+  "SIMBOLOS"
   };
 }
 

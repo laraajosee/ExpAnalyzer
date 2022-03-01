@@ -30,9 +30,10 @@ parser code
      String palabra = "";
 :} 
 
-terminal String LLAVEABIERTA, CONJ, LETRA, DOSPUNTOS,GUION, MAYORQUE, PUNTOCOMA, TILDE, NUMERO, MINUSCULA, MAYUSCULA;
+terminal String LLAVEABIERTA, CONJ, LETRA, DOSPUNTOS, GUION, MAYORQUE, PUNTOCOMA, TILDE, NUMERO, MINUSCULA, MAYUSCULA, COMA;
+terminal String PUNTO, ASTERISCO, OR,INTERROGACION, MAS , SIMBOLOS;
 
-non terminal ini, instrucciones, conjuntos, palabra, notacion;
+non terminal ini, instrucciones, conjuntos, palabra, notacion, cadena;
 
 
 
@@ -45,13 +46,12 @@ instrucciones ::=
      LLAVEABIERTA conjuntos {:System.out.println("ANALISIS  EXITOSO \n *********************************************" );:}
 ;
 
-conjuntos ::= CONJ DOSPUNTOS {:palabra = ""; :} palabra:a GUION MAYORQUE notacion PUNTOCOMA
+conjuntos ::= CONJ DOSPUNTOS palabra GUION MAYORQUE notacion PUNTOCOMA
 ;
 
-palabra ::=  LETRA:a {: palabra = palabra + a; :} palabra
-            |LETRA:a {: palabra = palabra + a; :}
+palabra ::=  LETRA palabra
+            |LETRA
 ;
 
 notacion ::= NUMERO TILDE NUMERO
-            | LETRA TILDE LETRA
 ;
