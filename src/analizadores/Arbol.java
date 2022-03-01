@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocupjlexwindows;
+package analizadores;
 
 /**
  *
@@ -13,7 +13,7 @@ public class Arbol {
 
     private Nodo raiz;
 
-    public void agregar(int valor) {
+    public void agregar(String valor) {
         Nodo nuevo = new Nodo();
         nuevo.setValor(valor);
 

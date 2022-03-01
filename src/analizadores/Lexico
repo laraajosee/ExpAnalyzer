@@ -15,73 +15,34 @@ import java_cup.runtime.Symbol;
 %init} 
 
 BLANCOS=[ \r|\t|\n|\b|\f]
-CONCA = ("."[a-z][a-z])
-DISY = ("|"[a-z][a-z])
-STAR = ("*"[a-z])
-PLUS = ("+"[a-z])  
-MARK = ("?"[a-z])
-CONJMIN = ([a-z]"~"[a-z])
-CONMAY = ([A-Z]"~"[A-Z])
-CONNUM = ([0-9]"~"[0-9])
-NUMEROS = ([0-9](","[0-9])*) 
-LETRAS = ([A-Za-z](","[A-Za-z])*) 
-IDENTIFICADOR = [a-zA-Z0-9_]+
-SIMBOLO = ([\!-\}]"~"[\!-\}])
-D=[0-9]+
-DD=[0-9]+("."[  |0-9]+)?
 COMMENT = "//".+
-CMULTI = "<!"(.+|\r|\t|\n|\b|\f)+"!>"
-FLECHA = "->"
-CARACTER = ((\".\"))
-LEXEMA = \".+\"
+CMULTI = "<!"[^"<!"]*"!>"
+LETRA = [a-zA-Z_]
+NUMERO = [0-9]
 
 %%
 
 
-"Evaluar" {return new Symbol(sym.REVALUAR,yyline,yychar, yytext());} 
-"CONJ" {return new Symbol(sym.CONJ,yyline,yychar, yytext());}
-":" {return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());} 
-
-";" {return new Symbol(sym.PTCOMA,yyline,yychar, yytext());} 
-"(" {return new Symbol(sym.PARIZQ,yyline,yychar, yytext());} 
-")" {return new Symbol(sym.PARDER,yyline,yychar, yytext());} 
-"[" {return new Symbol(sym.CORIZQ,yyline,yychar, yytext());} 
-"]" {return new Symbol(sym.CORDER,yyline,yychar, yytext());} 
 "{" {return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());} 
-"}" {return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());} 
+"-" {return new Symbol(sym.GUION,yyline,yychar, yytext());}
+">" {return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}  
+":" {return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());} 
+"CONJ" {return new Symbol(sym.CONJ,yyline,yychar, yytext());} 
+{LETRA} {return new Symbol(sym.LETRA,yyline,yychar, yytext());}
+{NUMERO} {return new Symbol(sym.NUMERO,yyline,yychar, yytext());}
+";" {return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
+"~" {return new Symbol(sym.TILDE,yyline,yychar, yytext());} 
 
-"+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
-"-" {return new Symbol(sym.MENOS,yyline,yychar, yytext());} 
-"*" {return new Symbol(sym.ASTERISCO,yyline,yychar, yytext());} 
-"/" {return new Symbol(sym.DIVIDIDO,yyline,yychar, yytext());} 
-"." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
-"|" {return new Symbol(sym.OR,yyline,yychar, yytext());}
-"?" {return new Symbol(sym.INTERROGACION,yyline,yychar, yytext());}
-"%%" {return new Symbol(sym.DPORCENTAJE,yyline,yychar, yytext());}
 
 
 \n {yychar=1;}
 
+
 {BLANCOS} {} 
-{D} {return new Symbol(sym.ENTERO,yyline,yychar, yytext());} 
-{DD} {return new Symbol(sym.DECIMAL,yyline,yychar, yytext());} 
-{IDENTIFICADOR} {return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());} 
-{FLECHA} {return new Symbol(sym.FLECHA,yyline,yychar, yytext());}
-{CONCA} {return new Symbol(sym.CONCA,yyline,yychar, yytext());} 
-{DISY} {return new Symbol(sym.DISY,yyline,yychar, yytext());} 
-{STAR} {return new Symbol(sym.DISY,yyline,yychar, yytext());} 
-{PLUS} {return new Symbol(sym.PLUS,yyline,yychar, yytext());}
-{MARK} {return new Symbol(sym.MARK,yyline,yychar, yytext());}
-{CONJMIN} {return new Symbol(sym.CONJMIN,yyline,yychar, yytext());}
-{CONMAY} {return new Symbol(sym.CONMAY,yyline,yychar, yytext());}
-{CONNUM} {return new Symbol(sym.CONNUM,yyline,yychar, yytext());}
-{NUMEROS} {return new Symbol(sym.NUMEROS,yyline,yychar, yytext());}
-{LETRAS} {return new Symbol(sym.LETRAS,yyline,yychar, yytext());}
-{SIMBOLO} {return new Symbol(sym.LETRAS,yyline,yychar, yytext());}
-{CARACTER} {return new Symbol(sym.CARACTER,yyline,yychar, yytext());}
-{LEXEMA} {return new Symbol(sym.LEXEMA,yyline,yychar, yytext());}
 {COMMENT} {} 
 {CMULTI} {} 
+
+
 
 
 

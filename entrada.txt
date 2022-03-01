@@ -1,24 +1,3 @@
-{
+{ /// DKLASDAS
 //////Conjuntos
-CONJ: Nombre_Conjunto -> .ab;
-CONJ: Nombre_Conjunto -> |ab;
-CONJ: Nombre_Conjunto -> *b;
-CONJ: Nombre_Conjunto -> +a;
-CONJ: Nombre_Conjunto -> ?a;
-CONJ: Nombre_Conjunto -> a~b;
 CONJ: Nombre_Conjunto -> A~B;
-CONJ: Nombre_Conjunto -> 1~9;
-CONJ: Nombre_Conjunto -> 1,2,9;
-CONJ: Nombre_Conjunto -> a,A,b;
-CONJ: Nombre_Conjunto -> !~!;
-
-////////// EXPRESIONES REGULARES
-ExpReg1 ->. {Nombre_Conjunto}* | "_" | {Nombre_Conjunto}{Nombre_Conjunto};
-ExpReg1 ->. {Nombre_Conjunto} . "_"* ;
-ExpReg1 ->. {Nombre_Conjunto}? . "_"? ;
-ExpReg1 ->. {Nombre_Conjunto}? ;
-%%
-%%
-
-ExpReg1: "primerLExema"
-}

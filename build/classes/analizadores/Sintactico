@@ -25,20 +25,16 @@ parser code
         System.out.println("Error síntactico irrecuperable en la Línea " + 
         (s.left)+ " Columna "+s.right+". Componente " + s.value + 
         " no reconocido."); 
-    }  
+    } 
+
+     String palabra = "";
 :} 
 
-terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER,LLAVEABIERTA,LLAVECERRADA;
-terminal String MAS,MENOS,ASTERISCO,DIVIDIDO;
-terminal String ENTERO;
-terminal String DECIMAL, OR, INTERROGACION;
-terminal String UMENOS, DISY, PLUS, MARK, CONJMIN, CONMAY, CONNUM, NUMEROS, LETRAS, SIMBOLO, LEXEMA;
-terminal String REVALUAR, CONJ, DOSPUNTOS, IDENTIFICADOR,FLECHA, CONCA, STAR, PUNTO, CARACTER, DPORCENTAJE;
+terminal String LLAVEABIERTA, CONJ, LETRA, DOSPUNTOS,GUION, MAYORQUE, PUNTOCOMA, TILDE, NUMERO, MINUSCULA, MAYUSCULA;
 
-non terminal ini;
-non terminal instrucciones;
-non terminal instruccion, conjuntos, notacion,expresionesRegulares, regular, expreg;
-non terminal Double expresion;
+non terminal ini, instrucciones, conjuntos, palabra, notacion;
+
+
 
 
 start with ini; 
@@ -46,49 +42,16 @@ start with ini;
 ini::= instrucciones;
 
 instrucciones ::= 
-    LLAVEABIERTA conjuntos expresionesRegulares DPORCENTAJE DPORCENTAJE expreg  LLAVECERRADA  {:System.out.println("ANALISIS  EXITOSO \n *******************" );:}
-;
-conjuntos::= CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA
-            |CONJ DOSPUNTOS IDENTIFICADOR FLECHA notacion PTCOMA conjuntos
+     LLAVEABIERTA conjuntos {:System.out.println("ANALISIS  EXITOSO \n *********************************************" );:}
 ;
 
-notacion::= CONCA
-           | DISY
-           | STAR
-           | PLUS
-           | MARK
-           | CONJMIN
-           | CONMAY
-           | CONNUM
-           | NUMEROS
-           | LETRAS
-           | SIMBOLO
- ;
-
-expresionesRegulares ::= IDENTIFICADOR FLECHA PUNTO regular PTCOMA
-           | IDENTIFICADOR FLECHA PUNTO regular PTCOMA expresionesRegulares
+conjuntos ::= CONJ DOSPUNTOS {:palabra = ""; :} palabra:a GUION MAYORQUE notacion PUNTOCOMA
 ;
 
-regular ::=  LLAVEABIERTA IDENTIFICADOR LLAVECERRADA regular
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA ASTERISCO
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA ASTERISCO regular
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA ASTERISCO OR regular
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA OR regular
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA PUNTO regular
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA INTERROGACION PUNTO regular
-           | LLAVEABIERTA IDENTIFICADOR LLAVECERRADA INTERROGACION
-           | CARACTER regular
-           | CARACTER
-           | CARACTER ASTERISCO
-           | CARACTER ASTERISCO regular 
-           | CARACTER ASTERISCO OR regular
-           | CARACTER OR regular      
-           | CARACTER PUNTO regular 
-           | CARACTER INTERROGACION PUNTO regular 
-           | CARACTER INTERROGACION
-
+palabra ::=  LETRA:a {: palabra = palabra + a; :} palabra
+            |LETRA:a {: palabra = palabra + a; :}
 ;
 
-expreg ::= IDENTIFICADOR DOSPUNTOS LEXEMA
+notacion ::= NUMERO TILDE NUMERO
+            | LETRA TILDE LETRA
 ;

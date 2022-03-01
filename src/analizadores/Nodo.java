@@ -1,11 +1,11 @@
 
-package proyectocupjlexwindows;
+package analizadores;
 
 
 public class Nodo {
     private Nodo izquierda;
     private Nodo derecha;
-    private int valor;
+    private String valor;
     
     public void insertarNodo(Nodo hijo){
         if(izquierda == null){
@@ -60,14 +60,14 @@ public class Nodo {
     /**
      * @return the valor
      */
-    public int getValor() {
+    public String getValor() {
         return valor;
     }
 
     /**
      * @param valor the valor to set
      */
-    public void setValor(int valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
     
