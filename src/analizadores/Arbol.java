@@ -13,13 +13,13 @@ public class Arbol {
 
     private Nodo raiz;
 
-    public void agregar(String valor) {
+    public void agregar(int valor) {
         Nodo nuevo = new Nodo();
-        nuevo.setValor(valor);
+        nuevo.setPadre(valor);
 
         if (raiz == null) {
             raiz = nuevo;
-            System.out.println("se inserto: "+nuevo.getValor());
+            System.out.println("se inserto: "+nuevo.getPadre());
         } else {
             raiz.insertarNodo(nuevo);
         }

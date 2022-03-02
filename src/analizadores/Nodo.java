@@ -5,26 +5,26 @@ package analizadores;
 public class Nodo {
     private Nodo izquierda;
     private Nodo derecha;
-    private String valor;
+    private int padre;
     
     public void insertarNodo(Nodo hijo){
-        if(izquierda == null){
-            izquierda = hijo;
-            System.out.println("se inserto: "+hijo.valor);
+        if(getIzquierda() == null){
+            setIzquierda(hijo);
+            System.out.println("se inserto: "+hijo.getPadre());
         }else{
-            izquierda.insertarNodo(hijo);
-            System.out.println("se inserto: "+hijo.valor);
+            getIzquierda().insertarNodo(hijo);
+            System.out.println("se inserto: "+hijo.getPadre());
         }
         
             
     }
     public void imprimir(){ 
-        if(izquierda != null){ 
-            izquierda.imprimir();
-            System.out.println(valor);
+        if(getIzquierda() != null){ 
+            getIzquierda().imprimir();
+            System.out.println(getPadre());
         }else{
             System.out.println("*********");
-            System.out.println(valor);
+            System.out.println(getPadre());
             
         }
     }
@@ -58,17 +58,20 @@ public class Nodo {
     }
 
     /**
-     * @return the valor
+     * @return the padre
      */
-    public String getValor() {
-        return valor;
+    public int getPadre() {
+        return padre;
     }
 
     /**
-     * @param valor the valor to set
+     * @param padre the padre to set
      */
-    public void setValor(String valor) {
-        this.valor = valor;
+    public void setPadre(int padre) {
+        this.padre = padre;
     }
     
+    
 }
+    
+    
