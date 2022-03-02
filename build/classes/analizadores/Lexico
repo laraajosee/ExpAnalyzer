@@ -23,6 +23,7 @@ SIMBOLOS = [\!-\}]
 
 %%
 
+"," {return new Symbol(sym.COMA,yyline,yychar, yytext());} 
 ";" {return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
 "{" {return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());} 
 "-" {return new Symbol(sym.GUION,yyline,yychar, yytext());}

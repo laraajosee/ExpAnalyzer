@@ -47,11 +47,20 @@ instrucciones ::=
 ;
 
 conjuntos ::= CONJ DOSPUNTOS palabra GUION MAYORQUE notacion PUNTOCOMA
+              |CONJ DOSPUNTOS palabra GUION MAYORQUE notacion PUNTOCOMA conjuntos
 ;
 
 palabra ::=  LETRA palabra
             |LETRA
 ;
 
-notacion ::= NUMERO TILDE NUMERO
+notacion ::=  NUMERO COMA notacion
+              |NUMERO
+              |LETRA COMA notacion
+              |LETRA
+              |LETRA TILDE LETRA
+              |NUMERO TILDE NUMERO
+              |SIMBOLOS TILDE SIMBOLOS
 ;
+
+
