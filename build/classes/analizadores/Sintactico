@@ -28,14 +28,17 @@ parser code
     } 
 
      String palabra = "";
+    
 :} 
 
-terminal String LLAVEABIERTA, CONJ, LETRA, DOSPUNTOS, GUION, MAYORQUE, PUNTOCOMA, TILDE, NUMERO, MINUSCULA, MAYUSCULA, COMA;
-terminal String PUNTO, ASTERISCO, OR,INTERROGACION, MAS , SIMBOLOS;
+terminal String LLAVEABIERTA,LLAVECERRADA, CONJ, LETRA, DOSPUNTOS, GUION, MAYORQUE, PUNTOCOMA, TILDE, NUMERO, MINUSCULA, MAYUSCULA, COMA;
+terminal String PUNTO, ASTERISCO, OR,INTERROGACION, MAS , SIMBOLOS, PORCENTAJE,IDENTIFICADOR, COMILLAS, CCOMILLA,CARACTER;
 
-non terminal ini, instrucciones, conjuntos, palabra, notacion, cadena;
+non terminal ini, instrucciones, conjuntos, palabra, notacion, cadena, Xreg, z, caracter;
 
-
+precedence left OR;
+precedence left PUNTO;
+precedence left ASTERISCO,INTERROGACION, MAS;
 
 
 start with ini; 
@@ -43,16 +46,13 @@ start with ini;
 ini::= instrucciones;
 
 instrucciones ::= 
-     LLAVEABIERTA conjuntos {:System.out.println("ANALISIS  EXITOSO \n *********************************************" );:}
+     LLAVEABIERTA conjuntos Xreg {:System.out.println("ANALISIS  EXITOSO \n *********************************************" );:}
 ;
 
-conjuntos ::= CONJ DOSPUNTOS palabra GUION MAYORQUE notacion PUNTOCOMA
-              |CONJ DOSPUNTOS palabra GUION MAYORQUE notacion PUNTOCOMA conjuntos
+conjuntos ::= CONJ DOSPUNTOS IDENTIFICADOR GUION MAYORQUE notacion PUNTOCOMA
+              |CONJ DOSPUNTOS IDENTIFICADOR GUION MAYORQUE notacion PUNTOCOMA conjuntos
 ;
 
-palabra ::=  LETRA palabra
-            |LETRA
-;
 
 notacion ::=  NUMERO COMA notacion
               |NUMERO
@@ -63,4 +63,38 @@ notacion ::=  NUMERO COMA notacion
               |SIMBOLOS TILDE SIMBOLOS
 ;
 
+Xreg::= IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a); :};
 
+
+
+z ::=   PUNTO z:a z:b {: String p = "("+a+"."+b+")";
+        RESULT = p;
+        :}
+        | OR z:a z:b {: String p = "("+a+"|"+b+")";
+        RESULT = p;
+        :}
+        | ASTERISCO z:a {: String p = "(" + a+ ")*";
+        RESULT = p;
+        :}
+        | MAS z:a {: String p = "(" + a+ ")+";
+        RESULT = p;
+        :}
+        | INTERROGACION z:a {: String p = "(" + a+ ")?";
+        RESULT = p;
+        :}
+        | CARACTER:id {: String Y = "{"+id+"}";
+        RESULT = Y; :}
+        |LLAVEABIERTA IDENTIFICADOR:id LLAVECERRADA {: String Y = "{"+id+"}"; 
+        RESULT  = Y; :}
+;
+
+caracter ::= LETRA:q {: String t = q; 
+                      RESULT = q;  :}
+             |NUMERO:q {: String t = q; 
+                      RESULT = q;  :}
+             |SIMBOLOS:q {: String t = q; 
+                      RESULT = q;  :}
+             |PUNTO
+
+                      
+;

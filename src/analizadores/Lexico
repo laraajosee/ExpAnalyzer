@@ -13,33 +13,48 @@ import java_cup.runtime.Symbol;
     yyline = 1; 
     yychar = 1; 
 %init} 
-
+IDENTIFICADOR = [a-zA-Z0-9_]+
+CCOMILLA = (\\(\"))
 BLANCOS=[ \r|\t|\n|\b|\f]
 COMMENT = "//".+
 CMULTI = "<!"[^"<!"]*"!>"
 LETRA = [a-zA-Z_]
 NUMERO = [0-9]
+CARACTER = \"([!-~]|(\\)(\"))\"
 SIMBOLOS = [\!-\}]
+COMILLAS = \"
 
-%%
 
-"," {return new Symbol(sym.COMA,yyline,yychar, yytext());} 
-";" {return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
-"{" {return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());} 
-"-" {return new Symbol(sym.GUION,yyline,yychar, yytext());}
-">" {return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}  
-":" {return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());} 
-"CONJ" {return new Symbol(sym.CONJ,yyline,yychar, yytext());} 
-{LETRA} {return new Symbol(sym.LETRA,yyline,yychar, yytext());}
-{NUMERO} {return new Symbol(sym.NUMERO,yyline,yychar, yytext());}
-{SIMBOLOS} {return new Symbol(sym.SIMBOLOS,yyline,yychar, yytext());}
+
+%% 
 "~" {return new Symbol(sym.TILDE,yyline,yychar, yytext());} 
 "," {return new Symbol(sym.COMA,yyline,yychar, yytext());} 
 "*" {return new Symbol(sym.ASTERISCO,yyline,yychar, yytext());} 
 "+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
-"." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());} 
 "?" {return new Symbol(sym.INTERROGACION,yyline,yychar, yytext());} 
 "|" {return new Symbol(sym.OR,yyline,yychar, yytext());} 
+{CARACTER} {return new Symbol(sym.CARACTER,yyline,yychar, yytext());} 
+{CCOMILLA} {return new Symbol(sym.CCOMILLA,yyline,yychar, yytext());}
+{COMILLAS} {return new Symbol(sym.COMILLAS,yyline,yychar, yytext());} 
+"." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());} 
+"," {return new Symbol(sym.COMA,yyline,yychar, yytext());} 
+";" {return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
+"{" {return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());} 
+"}" {return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());} 
+"-" {return new Symbol(sym.GUION,yyline,yychar, yytext());}
+">" {return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}  
+":" {return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());} 
+"%" {return new Symbol(sym.PORCENTAJE,yyline,yychar, yytext());}
+"CONJ" {return new Symbol(sym.CONJ,yyline,yychar, yytext());}
+{LETRA} {return new Symbol(sym.LETRA,yyline,yychar, yytext());}
+
+
+
+{NUMERO} {return new Symbol(sym.NUMERO,yyline,yychar, yytext());}
+{IDENTIFICADOR} {return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());}
+{SIMBOLOS} {return new Symbol(sym.SIMBOLOS,yyline,yychar, yytext());}
+
+
 
 
 
@@ -49,6 +64,7 @@ SIMBOLOS = [\!-\}]
 {BLANCOS} {} 
 {COMMENT} {} 
 {CMULTI} {} 
+
 
 
 
