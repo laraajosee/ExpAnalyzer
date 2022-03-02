@@ -253,18 +253,19 @@ public class Lexico implements java_cup.runtime.Scanner {
 		/* 40 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,65538,
-"27:8,28:2,24,27,28,25,27:18,28,30,7,8:2,17,8:4,3,4,2,14,10,26,23:10,16,11,2" +
-"9,8,15,5,8,22:2,18,22:6,21,22:3,20,19,22:11,8,9,8:2,22,8,22:26,12,6,13,1,27" +
-":65409,0:2")[0];
+"29:8,30:2,26,29,30,27,29:18,11,32,7,8:2,19,8:4,3,4,2,16,12,28,25:10,18,13,3" +
+"1,8,17,5,8,24:2,20,24:6,23,24:3,22,21,24:11,8,9,8:2,24,8,24:13,10,24:12,14," +
+"6,15,1,29:65409,0:2")[0];
 
 	private int yy_rmap[] = unpackFromString(1,41,
-"0,1:7,2,1:9,3,4,1:4,4,1,5,4,1,6,7,8,6,9,10,5,11,12,13,14,4")[0];
+"0,1:7,2,1,3,1:9,3,1:3,3,1,4,3,1,5,6,7,5,8,9,4,10,11,12,13,14")[0];
 
-	private int yy_nxt[][] = unpackFromString(15,31,
-"1,2,3,4,5,6,7,8,9,30,10,11,12,13,14,15,16,17,18,40:4,19,20,21,34,22,21,36,9" +
-",-1:32,29:8,33,29:14,-1:2,29,-1:2,29:2,-1:18,24,39,24:4,-1:25,24:6,-1:8,26:" +
-"23,-1:2,26:5,-1:7,25,-1:30,23,-1:41,24:3,27,24:2,-1:14,32,-1:49,35,-1:34,37" +
-",-1,37:28,-1,38,-1:15,28,-1:33,24:2,31,24:3,-1:7");
+	private int yy_nxt[][] = unpackFromString(15,33,
+"1,2,3,4,5,6,7,8,9,30,10,11,12,13,14,15,16,17,18,19,40,10:4,20,21,11,34,22,1" +
+"1,36,9,-1:34,29:8,33,29:16,-1:2,29,-1:2,29:2,-1:10,24,-1:9,24:6,-1:8,26:25," +
+"-1:2,26:5,-1:7,25,-1:32,23,-1:35,24,-1:9,24:3,27,24:2,-1:14,32,-1:2,29,-1:5" +
+"0,35,-1:36,37,-1,37:30,-1,38,-1:17,28,-1:25,24,-1:9,24:2,31,24:3,-1:17,24,-" +
+"1:9,24,39,24:4,-1:7");
 
 	public java_cup.runtime.Symbol next_token ()
 		throws java.io.IOException {
@@ -347,51 +348,51 @@ public class Lexico implements java_cup.runtime.Scanner {
 					case -10:
 						break;
 					case 10:
-						{return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
+						{return new Symbol(sym.LETRA,yyline,yychar, yytext());}
 					case -11:
 						break;
 					case 11:
-						{return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
+						{}
 					case -12:
 						break;
 					case 12:
-						{return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());}
+						{return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
 					case -13:
 						break;
 					case 13:
-						{return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());}
+						{return new Symbol(sym.PUNTOCOMA,yyline,yychar, yytext());}
 					case -14:
 						break;
 					case 14:
-						{return new Symbol(sym.GUION,yyline,yychar, yytext());}
+						{return new Symbol(sym.LLAVEABIERTA,yyline,yychar, yytext());}
 					case -15:
 						break;
 					case 15:
-						{return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}
+						{return new Symbol(sym.LLAVECERRADA,yyline,yychar, yytext());}
 					case -16:
 						break;
 					case 16:
-						{return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());}
+						{return new Symbol(sym.GUION,yyline,yychar, yytext());}
 					case -17:
 						break;
 					case 17:
-						{return new Symbol(sym.PORCENTAJE,yyline,yychar, yytext());}
+						{return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}
 					case -18:
 						break;
 					case 18:
-						{return new Symbol(sym.LETRA,yyline,yychar, yytext());}
+						{return new Symbol(sym.DOSPUNTOS,yyline,yychar, yytext());}
 					case -19:
 						break;
 					case 19:
-						{return new Symbol(sym.NUMERO,yyline,yychar, yytext());}
+						{return new Symbol(sym.PORCENTAJE,yyline,yychar, yytext());}
 					case -20:
 						break;
 					case 20:
-						{yychar=1;}
+						{return new Symbol(sym.NUMERO,yyline,yychar, yytext());}
 					case -21:
 						break;
 					case 21:
-						{}
+						{yychar=1;}
 					case -22:
 						break;
 					case 22:

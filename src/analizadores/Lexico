@@ -20,7 +20,7 @@ COMMENT = "//".+
 CMULTI = "<!"[^"<!"]*"!>"
 LETRA = [a-zA-Z_]
 NUMERO = [0-9]
-CARACTER = \"([!-~]|(\\)(\"))\"
+CARACTER = \"([!-~]|(\\)"n"|(\\)\"|" ")\"
 SIMBOLOS = [\!-\}]
 COMILLAS = \"
 
