@@ -28,6 +28,7 @@ parser code
     } 
 
      String palabra = "";
+
     
 :} 
 
@@ -63,29 +64,53 @@ notacion ::=  NUMERO COMA notacion
               |SIMBOLOS TILDE SIMBOLOS
 ;
 
-Xreg::= IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a); :};
+Xreg::= IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a);
+        Nodo ultimo = new Nodo();
+        ultimo.setPadre(".");
+        ultimo.setIzquierda((Nodo)a);
+        Nodo numeral = new Nodo();
+        numeral.setPadre("#");
+        ultimo.setDerecha(numeral);
+        ultimo.imprimir();
+        :};
 
 
 
-z ::=   PUNTO z:a z:b {: String p = "("+a+"."+b+")";
-        RESULT = p;
+z ::=   PUNTO z:a z:b {: Nodo nodo = new Nodo(); 
+        nodo.setPadre(".");
+        nodo.setIzquierda((Nodo)a);
+        nodo.setDerecha((Nodo)b);
+        RESULT = nodo;
         :}
-        | OR z:a z:b {: String p = "("+a+"|"+b+")";
-        RESULT = p;
+        | OR z:a z:b {: Nodo nodo = new Nodo(); 
+        nodo.setPadre("|");
+        nodo.setIzquierda((Nodo)a);
+        nodo.setDerecha((Nodo)b);
+        RESULT = nodo;
         :}
-        | ASTERISCO z:a {: String p = "(" + a+ ")*";
-        RESULT = p;
+        | ASTERISCO z:a {: Nodo nodo = new Nodo(); 
+        nodo.setPadre("*");
+        nodo.setIzquierda((Nodo)a);
+        RESULT = nodo;
         :}
-        | MAS z:a {: String p = "(" + a+ ")+";
-        RESULT = p;
+        | MAS z:a {: Nodo nodo = new Nodo(); 
+        nodo.setPadre("+");
+        nodo.setIzquierda((Nodo)a);
+        RESULT = nodo;
         :}
-        | INTERROGACION z:a {: String p = "(" + a+ ")?";
-        RESULT = p;
+        | INTERROGACION z:a {: Nodo nodo = new Nodo(); 
+        nodo.setPadre("?");
+        nodo.setIzquierda((Nodo)a);
+        RESULT = nodo;
         :}
-        | CARACTER:id {: String Y = "{"+id+"}";
-        RESULT = Y; :}
-        |LLAVEABIERTA IDENTIFICADOR:id LLAVECERRADA {: String Y = "{"+id+"}"; 
-        RESULT  = Y; :}
+        | CARACTER:id {: Nodo nodo = new Nodo(); 
+        nodo.setPadre(id);
+        RESULT = nodo;
+        :}
+        |LLAVEABIERTA IDENTIFICADOR:id LLAVECERRADA {: Nodo nodo = new Nodo(); 
+        nodo.setPadre(id);
+        RESULT = nodo;
+        :}
 ;
 
 caracter ::= LETRA:q {: String t = q; 

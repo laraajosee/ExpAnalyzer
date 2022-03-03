@@ -315,7 +315,15 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
-		 System.out.println(a); 
+		 System.out.println(a);
+        Nodo ultimo = new Nodo();
+        ultimo.setPadre(".");
+        ultimo.setIzquierda((Nodo)a);
+        Nodo numeral = new Nodo();
+        numeral.setPadre("#");
+        ultimo.setDerecha(numeral);
+        ultimo.imprimir();
+        
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("Xreg",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -330,8 +338,11 @@ class CUP$Sintactico$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		Object b = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		 String p = "("+a+"."+b+")";
-        RESULT = p;
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre(".");
+        nodo.setIzquierda((Nodo)a);
+        nodo.setDerecha((Nodo)b);
+        RESULT = nodo;
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
@@ -347,8 +358,11 @@ class CUP$Sintactico$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		Object b = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		 String p = "("+a+"|"+b+")";
-        RESULT = p;
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre("|");
+        nodo.setIzquierda((Nodo)a);
+        nodo.setDerecha((Nodo)b);
+        RESULT = nodo;
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
@@ -361,8 +375,10 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		 String p = "(" + a+ ")*";
-        RESULT = p;
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre("*");
+        nodo.setIzquierda((Nodo)a);
+        RESULT = nodo;
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
@@ -375,8 +391,10 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		 String p = "(" + a+ ")+";
-        RESULT = p;
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre("+");
+        nodo.setIzquierda((Nodo)a);
+        RESULT = nodo;
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
@@ -389,8 +407,10 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		 String p = "(" + a+ ")?";
-        RESULT = p;
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre("?");
+        nodo.setIzquierda((Nodo)a);
+        RESULT = nodo;
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
@@ -403,8 +423,10 @@ class CUP$Sintactico$actions {
 		int idleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		 String Y = "{"+id+"}";
-        RESULT = Y; 
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre(id);
+        RESULT = nodo;
+        
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -416,8 +438,10 @@ class CUP$Sintactico$actions {
 		int idleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
-		 String Y = "{"+id+"}"; 
-        RESULT  = Y; 
+		 Nodo nodo = new Nodo(); 
+        nodo.setPadre(id);
+        RESULT = nodo;
+        
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;

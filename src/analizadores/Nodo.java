@@ -1,33 +1,6 @@
-
 package analizadores;
 
-
 public class Nodo {
-    private Nodo izquierda;
-    private Nodo derecha;
-    private int padre;
-    
-    public void insertarNodo(Nodo hijo){
-        if(getIzquierda() == null){
-            setIzquierda(hijo);
-            System.out.println("se inserto: "+hijo.getPadre());
-        }else{
-            getIzquierda().insertarNodo(hijo);
-            System.out.println("se inserto: "+hijo.getPadre());
-        }
-        
-            
-    }
-    public void imprimir(){ 
-        if(getIzquierda() != null){ 
-            getIzquierda().imprimir();
-            System.out.println(getPadre());
-        }else{
-            System.out.println("*********");
-            System.out.println(getPadre());
-            
-        }
-    }
 
     /**
      * @return the izquierda
@@ -60,18 +33,41 @@ public class Nodo {
     /**
      * @return the padre
      */
-    public int getPadre() {
+    public String getPadre() {
         return padre;
     }
 
     /**
      * @param padre the padre to set
      */
-    public void setPadre(int padre) {
+    public void setPadre(String padre) {
         this.padre = padre;
     }
-    
-    
+    private Nodo izquierda;
+    private Nodo derecha;
+    private String padre;
+
+//    public void insertarNodo(Nodo hijo){
+//        if(getIzquierda() == null){
+//            setIzquierda(hijo);
+//            System.out.println("se inserto: "+hijo.getPadre());
+//        }else{
+//            getIzquierda().insertarNodo(hijo);
+//            System.out.println("se inserto: "+hijo.getPadre());
+//        }
+//        
+//            
+//    }
+    public void imprimir() {
+        if (getIzquierda()!= null) {
+            getIzquierda().imprimir();
+        }
+        System.out.println(getPadre());
+        if (getDerecha() != null) {
+            getDerecha().imprimir();
+        }
+    }
 }
-    
-    
+/**
+ * @return the izquierda
+ */
