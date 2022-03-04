@@ -1,7 +1,44 @@
 package analizadores;
 
 public class Nodo {
+  
+    private Nodo izquierda;
+    private Nodo derecha;
+    private String padre;
+    private int NumeroNodo;
+    
+    
 
+//    public void insertarNodo(Nodo hijo){
+//        if(getIzquierda() == null){
+//            setIzquierda(hijo);
+//            System.out.println("se inserto: "+hijo.getPadre());
+//        }else{
+//            getIzquierda().insertarNodo(hijo);
+//            System.out.println("se inserto: "+hijo.getPadre());
+//        }
+//        
+//            
+//    }
+    void hola(Nodo imprimir){
+       imprimir.imprimir();
+        
+    }
+    public void imprimir() {
+        
+        if (getIzquierda()!= null) {
+            getIzquierda().imprimir();
+        }
+        System.out.println(getPadre());
+        if(getIzquierda() == null){
+            System.out.println("esta es una hoja: ");
+             
+        }
+        if (getDerecha() != null) {
+            getDerecha().imprimir();
+        }
+    }
+    
     /**
      * @return the izquierda
      */
@@ -43,29 +80,20 @@ public class Nodo {
     public void setPadre(String padre) {
         this.padre = padre;
     }
-    private Nodo izquierda;
-    private Nodo derecha;
-    private String padre;
+    
 
-//    public void insertarNodo(Nodo hijo){
-//        if(getIzquierda() == null){
-//            setIzquierda(hijo);
-//            System.out.println("se inserto: "+hijo.getPadre());
-//        }else{
-//            getIzquierda().insertarNodo(hijo);
-//            System.out.println("se inserto: "+hijo.getPadre());
-//        }
-//        
-//            
-//    }
-    public void imprimir() {
-        if (getIzquierda()!= null) {
-            getIzquierda().imprimir();
-        }
-        System.out.println(getPadre());
-        if (getDerecha() != null) {
-            getDerecha().imprimir();
-        }
+    /**
+     * @return the NumeroNodo
+     */
+    public int getNumeroNodo() {
+        return NumeroNodo;
+    }
+
+    /**
+     * @param NumeroNodo the NumeroNodo to set
+     */
+    public void setNumeroNodo(int NumeroNodo) {
+        this.NumeroNodo = NumeroNodo;
     }
 }
 /**

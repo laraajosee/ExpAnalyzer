@@ -6,6 +6,8 @@
 
 package analizadores; 
 import java_cup.runtime.*;
+import java.util.LinkedList;
+import java.util.List;
 
 parser code 
 {:
@@ -26,9 +28,9 @@ parser code
         (s.left)+ " Columna "+s.right+". Componente " + s.value + 
         " no reconocido."); 
     } 
-
+   
      String palabra = "";
-
+     List<Nodo> lista = new LinkedList<Nodo>();
     
 :} 
 
@@ -72,6 +74,9 @@ Xreg::= IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a);
         numeral.setPadre("#");
         ultimo.setDerecha(numeral);
         ultimo.imprimir();
+        lista.add(ultimo);
+        arbol arb = new arbol();
+        arb.contar(lista);
         :};
 
 

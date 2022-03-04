@@ -6,6 +6,8 @@
 package analizadores;
 
 import java_cup.runtime.*;
+import java.util.LinkedList;
+import java.util.List;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -166,8 +168,9 @@ public class Sintactico extends java_cup.runtime.lr_parser {
         (s.left)+ " Columna "+s.right+". Componente " + s.value + 
         " no reconocido."); 
     } 
-
+   
      String palabra = "";
+     List<Nodo> lista = new LinkedList<Nodo>();
     
 
 
@@ -323,6 +326,9 @@ class CUP$Sintactico$actions {
         numeral.setPadre("#");
         ultimo.setDerecha(numeral);
         ultimo.imprimir();
+        lista.add(ultimo);
+        arbol arb = new arbol();
+        arb.contar(lista);
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("Xreg",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
