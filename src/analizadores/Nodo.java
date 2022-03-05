@@ -1,44 +1,9 @@
 package analizadores;
 
-public class Nodo {
-  
-    private Nodo izquierda;
-    private Nodo derecha;
-    private String padre;
-    private int NumeroNodo;
-    
-    
+import java.util.Vector;
 
-//    public void insertarNodo(Nodo hijo){
-//        if(getIzquierda() == null){
-//            setIzquierda(hijo);
-//            System.out.println("se inserto: "+hijo.getPadre());
-//        }else{
-//            getIzquierda().insertarNodo(hijo);
-//            System.out.println("se inserto: "+hijo.getPadre());
-//        }
-//        
-//            
-//    }
-    void hola(Nodo imprimir){
-       imprimir.imprimir();
-        
-    }
-    public void imprimir() {
-        
-        if (getIzquierda()!= null) {
-            getIzquierda().imprimir();
-        }
-        System.out.println(getPadre());
-        if(getIzquierda() == null){
-            System.out.println("esta es una hoja: ");
-             
-        }
-        if (getDerecha() != null) {
-            getDerecha().imprimir();
-        }
-    }
-    
+public class Nodo {
+
     /**
      * @return the izquierda
      */
@@ -80,7 +45,6 @@ public class Nodo {
     public void setPadre(String padre) {
         this.padre = padre;
     }
-    
 
     /**
      * @return the NumeroNodo
@@ -95,7 +59,88 @@ public class Nodo {
     public void setNumeroNodo(int NumeroNodo) {
         this.NumeroNodo = NumeroNodo;
     }
+
+    /**
+     * @return the anteriores
+     */
+    public String getAnteriores() {
+        return anteriores;
+    }
+
+    /**
+     * @param anteriores the anteriores to set
+     */
+    public void setAnteriores(String anteriores) {
+        this.anteriores = anteriores;
+    }
+  
+    private Nodo izquierda;
+    private Nodo derecha;
+    private String padre;
+    private int NumeroNodo;
+    private String anteriores;
+    private String siguientes;
+    private boolean anulable;
+    
+    
+
+//    public void insertarNodo(Nodo hijo){
+//        if(getIzquierda() == null){
+//            setIzquierda(hijo);
+//            System.out.println("se inserto: "+hijo.getPadre());
+//        }else{
+//            getIzquierda().insertarNodo(hijo);
+//            System.out.println("se inserto: "+hijo.getPadre());
+//        }
+//        
+//            
+//    }
+    void hola(Nodo imprimir){
+       imprimir.imprimir();
+        
+    }
+    public void imprimir() {
+        
+        if (getIzquierda()!= null) {
+            getIzquierda().imprimir();
+        }
+        System.out.println(getPadre());
+        if(getIzquierda() == null){
+            System.out.println("esta es una hoja: ");
+             
+        }
+        if (getDerecha() != null) {
+            getDerecha().imprimir();
+        }
+    }
+
+    /**
+     * @return the siguientes
+     */
+    public String getSiguientes() {
+        return siguientes;
+    }
+
+    /**
+     * @param siguientes the siguientes to set
+     */
+    public void setSiguientes(String siguientes) {
+        this.siguientes = siguientes;
+    }
+
+    /**
+     * @return the anulable
+     */
+    public boolean isAnulable() {
+        return anulable;
+    }
+
+    /**
+     * @param anulable the anulable to set
+     */
+    public void setAnulable(boolean anulable) {
+        this.anulable = anulable;
+    }
 }
-/**
- * @return the izquierda
- */
+    
+    
