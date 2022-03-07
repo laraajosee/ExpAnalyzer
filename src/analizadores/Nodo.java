@@ -1,5 +1,7 @@
 package analizadores;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Vector;
 
 public class Nodo {
@@ -73,7 +75,7 @@ public class Nodo {
     public void setAnteriores(String anteriores) {
         this.anteriores = anteriores;
     }
-  
+
     private Nodo izquierda;
     private Nodo derecha;
     private String padre;
@@ -81,8 +83,7 @@ public class Nodo {
     private String anteriores;
     private String siguientes;
     private boolean anulable;
-    
-    
+    private int id;
 
 //    public void insertarNodo(Nodo hijo){
 //        if(getIzquierda() == null){
@@ -95,22 +96,42 @@ public class Nodo {
 //        
 //            
 //    }
-    void hola(Nodo imprimir){
-       imprimir.imprimir();
-        
+    void hola(Nodo imprimir) {
+        imprimir.imprimir();
+
     }
+
     public void imprimir() {
-        
-        if (getIzquierda()!= null) {
+
+        if (getIzquierda() != null) {
             getIzquierda().imprimir();
         }
         System.out.println(getPadre());
-        if(getIzquierda() == null){
+        if (getIzquierda() == null) {
             System.out.println("esta es una hoja: ");
-             
+
         }
         if (getDerecha() != null) {
             getDerecha().imprimir();
+        }
+    }
+    
+
+    public String textoGraphvyz(){
+        if(getIzquierda() == null && getDerecha() == null){
+            System.out.println("entro a primer if"+getPadre());
+            return String.valueOf("node"+getId());
+            
+        }else{
+            String texto =  "";
+            if(getIzquierda() != null){
+                texto += "node"+getId()+ "->"+getIzquierda().textoGraphvyz()+"\n";
+                        
+            }  
+            if(getDerecha()!= null){
+                texto += "node"+getId()+ "->"+getDerecha().textoGraphvyz()+"\n";
+            }
+            return texto;
         }
     }
 
@@ -141,6 +162,18 @@ public class Nodo {
     public void setAnulable(boolean anulable) {
         this.anulable = anulable;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 }
-    
-    
