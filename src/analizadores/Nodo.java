@@ -63,27 +63,83 @@ public class Nodo {
     }
 
     /**
-     * @return the anteriores
+     * @return the primeros
      */
-    public String getAnteriores() {
-        return anteriores;
+    public String getPrimeros() {
+        return primeros;
     }
 
     /**
-     * @param anteriores the anteriores to set
+     * @param primeros the primeros to set
      */
-    public void setAnteriores(String anteriores) {
-        this.anteriores = anteriores;
+    public void setPrimeros(String primeros) {
+        this.primeros = primeros;
     }
 
+    /**
+     * @return the ultimos
+     */
+    public String getUltimos() {
+        return ultimos;
+    }
+
+    /**
+     * @param ultimos the ultimos to set
+     */
+    public void setUltimos(String ultimos) {
+        this.ultimos = ultimos;
+    }
+
+    /**
+     * @return the anulable
+     */
+    public boolean isAnulable() {
+        return anulable;
+    }
+
+    /**
+     * @param anulable the anulable to set
+     */
+    public void setAnulable(boolean anulable) {
+        this.anulable = anulable;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     private Nodo izquierda;
     private Nodo derecha;
     private String padre;
     private int NumeroNodo;
-    private String anteriores;
-    private String siguientes;
+    private String primeros;
+    private String ultimos;
     private boolean anulable;
     private int id;
+    private String tipo;
 
 //    public void insertarNodo(Nodo hijo){
 //        if(getIzquierda() == null){
@@ -119,7 +175,7 @@ public class Nodo {
 
     public String textoGraphvyz(){
         if(getIzquierda() == null && getDerecha() == null){
-            System.out.println("entro a primer if"+getPadre());
+           // System.out.println("entro a primer if"+getPadre());
             return String.valueOf("node"+getId());
             
         }else{
@@ -134,46 +190,6 @@ public class Nodo {
             return texto;
         }
     }
-
-    /**
-     * @return the siguientes
-     */
-    public String getSiguientes() {
-        return siguientes;
-    }
-
-    /**
-     * @param siguientes the siguientes to set
-     */
-    public void setSiguientes(String siguientes) {
-        this.siguientes = siguientes;
-    }
-
-    /**
-     * @return the anulable
-     */
-    public boolean isAnulable() {
-        return anulable;
-    }
-
-    /**
-     * @param anulable the anulable to set
-     */
-    public void setAnulable(boolean anulable) {
-        this.anulable = anulable;
-    }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 }
+
+    

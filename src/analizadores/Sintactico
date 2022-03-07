@@ -73,7 +73,7 @@ Xreg::= IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a);
         Nodo numeral = new Nodo();
         numeral.setPadre("#");
         ultimo.setDerecha(numeral);
-        ultimo.imprimir();
+        //ultimo.imprimir();
         lista.add(ultimo);
         arbol arb = new arbol();
         arb.contar(lista);
@@ -110,6 +110,7 @@ z ::=   PUNTO z:a z:b {: Nodo nodo = new Nodo();
         :}
         | CARACTER:id {: Nodo nodo = new Nodo(); 
         nodo.setPadre(id);
+        nodo.setTipo("id");
         RESULT = nodo;
         :}
         |LLAVEABIERTA IDENTIFICADOR:id LLAVECERRADA {: Nodo nodo = new Nodo(); 

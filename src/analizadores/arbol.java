@@ -30,10 +30,12 @@ public class arbol {
             System.out.println("Empezando a imporir arbol afuera de CUP");
             llenarARbol(f);
             //System.out.println(" padre" +f.getPadre() + " hijo iz " +f.getIzquierda().getPadre() + " derecha: " + f.getDerecha().getPadre());
+            primeros(f);
+            ultimos(f);
             imprimirArbol(f);
-            siguientes(f);
+            
             cabecera(f);
-            System.out.println("cabecera: "+cabecera);
+            //System.out.println("cabecera: "+cabecera);
             dibujarGraphvyz(f);
             r();
             
@@ -43,6 +45,7 @@ public class arbol {
     public String obtenerCodigoGraphvyz(Nodo f) {
         String texto = "digraph G"
                 + "{\n"
+                +"bgcolor=\"turquoise\" "
                 +cabecera;
         System.out.println("obteniendo graphvbyz");
         if(f.getPadre()!= null){
@@ -125,8 +128,8 @@ public class arbol {
         if (f.getIzquierda() == null && f.getDerecha() == null) {
             f.setNumeroNodo(contador);
             String hola = Integer.toString(contador);
-            f.setAnteriores(hola);
-            f.setSiguientes(Integer.toString(contador));
+            f.setPrimeros(hola);
+            f.setUltimos(hola);
             f.setAnulable(false);
             contador++;
         }
@@ -141,9 +144,9 @@ public class arbol {
             } else if (f.getIzquierda().isAnulable() == true && f.getDerecha().isAnulable() == true) {
                 f.setAnulable(true);
             } else if (f.getIzquierda().isAnulable() == false && f.getDerecha().isAnulable() == true) {
-                f.setAnulable(true);
+                f.setAnulable(false);
             } else if (f.getIzquierda().isAnulable() == true && f.getDerecha().isAnulable() == false) {
-                f.setAnulable(true);
+                f.setAnulable(false);
             }
 
         } else if (f.getPadre().equalsIgnoreCase("*")) {
@@ -162,9 +165,9 @@ public class arbol {
             } else if (f.getIzquierda().isAnulable() == true && f.getDerecha().isAnulable() == true) {
                 f.setAnulable(true);
             } else if (f.getIzquierda().isAnulable() == false && f.getDerecha().isAnulable() == true) {
-                f.setAnulable(false);
+                f.setAnulable(true);
             } else if (f.getIzquierda().isAnulable() == true && f.getDerecha().isAnulable() == false) {
-                f.setAnulable(false);
+                f.setAnulable(true);
             }
 
         }
@@ -174,15 +177,68 @@ public class arbol {
 
     }
     
-    public void siguientes(Nodo f){
+    public void primeros(Nodo f){
         if (f.getIzquierda() != null) {
-            siguientes(f.getIzquierda());
+            primeros(f.getIzquierda());
         }
     
         if (f.getDerecha() != null) {
-            siguientes(f.getDerecha());
+            primeros(f.getDerecha());
         }
-        System.out.println(f.getPadre());
+        //System.out.println(f.getPadre());
+        if (f.getPadre().equalsIgnoreCase(".")) {
+            if(f.getIzquierda().isAnulable()== true){
+                String primeros = f.getIzquierda().getPrimeros()+","+f.getDerecha().getPrimeros();
+                f.setPrimeros(primeros);
+            }else{
+                f.setPrimeros(f.getIzquierda().getPrimeros());
+            }
+        } else if (f.getPadre().equalsIgnoreCase("*")) {
+            f.setPrimeros(f.getIzquierda().getPrimeros());
+           
+        } else if (f.getPadre().equalsIgnoreCase("+")) {
+             f.setPrimeros(f.getIzquierda().getPrimeros());
+           
+        } else if (f.getPadre().equalsIgnoreCase("?")) {
+             f.setPrimeros(f.getIzquierda().getPrimeros());
+        } else if (f.getPadre().equalsIgnoreCase("|")) {
+            String primeros = f.getIzquierda().getPrimeros()+","+f.getDerecha().getPrimeros();
+            f.setPrimeros(primeros);
+          
+        }
+        
+        
+    }
+    
+    public void ultimos(Nodo f){
+        if (f.getIzquierda() != null) {
+            ultimos(f.getIzquierda());
+        }
+    
+        if (f.getDerecha() != null) {
+            ultimos(f.getDerecha());
+        }
+        //System.out.println(f.getPadre());
+        if (f.getPadre().equalsIgnoreCase(".")) {
+            if(f.getDerecha().isAnulable()== true){
+                String anteriores = f.getIzquierda().getUltimos()+","+f.getDerecha().getUltimos();
+                f.setUltimos(anteriores);
+            }else{
+                f.setUltimos(f.getIzquierda().getUltimos());
+            }
+        } else if (f.getPadre().equalsIgnoreCase("*")) {
+            f.setUltimos(f.getIzquierda().getUltimos());
+           
+        } else if (f.getPadre().equalsIgnoreCase("+")) {
+             f.setUltimos(f.getIzquierda().getUltimos());
+           
+        } else if (f.getPadre().equalsIgnoreCase("?")) {
+              f.setUltimos(f.getIzquierda().getUltimos());
+        } else if (f.getPadre().equalsIgnoreCase("|")) {
+            String ultimos = f.getIzquierda().getUltimos()+","+f.getDerecha().getUltimos();
+            f.setUltimos(ultimos);
+          
+        }
         
         
     }
@@ -194,10 +250,19 @@ public class arbol {
         if (f.getDerecha() != null) {
             cabecera(f.getDerecha());
         }
-        System.out.println(f.getPadre());
-        //cabecera += f.getPadre();
+        //System.out.println(f.getPadre());
+     
+        if(f.getTipo() == "id"){
+            if(f.getPadre().equals(("\" \""))){
+                cabecera += "node"+(String.valueOf(f.getId()))+" [label=\"\\\""+" "+"\\\"\"];\n";
+            }else{
+                cabecera += "node"+(String.valueOf(f.getId()))+" [label="+f.getPadre()+"];\n";
+            }
+            
+        }else{
+            cabecera += "node"+(String.valueOf(f.getId()))+" [label=\""+f.getPadre()+"\"];\n";
+        }
         
-        cabecera += "node"+(String.valueOf(f.getId()))+" [label=\""+f.getPadre()+"\"];\n";
        
          
     }
@@ -210,11 +275,12 @@ public class arbol {
         System.out.println("************************");
         System.out.println("nodo: " + f.getPadre());
         System.out.println("Numero de nodo: " + f.getNumeroNodo());
-        System.out.println("Sus anteriores son: :" + f.getAnteriores());
-        System.out.println("Sus siguientes es: " + f.getSiguientes());
+        System.out.println("Sus primeros son: :" + f.getPrimeros());
+        System.out.println("Sus ultimos es: " + f.getUltimos());
         System.out.println("Anulable? " + f.isAnulable());
         System.out.println("id***: " + f.getId());
-
+        System.out.println("tipo***: " + f.getTipo());
+        System.out.println("*******************");
 //         for(int i=0; i<f.getAnteriores().size(); i++){
 //            System.out.print(f.getAnteriores().elementAt(i)+"\t");
 //        }

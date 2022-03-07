@@ -325,7 +325,7 @@ class CUP$Sintactico$actions {
         Nodo numeral = new Nodo();
         numeral.setPadre("#");
         ultimo.setDerecha(numeral);
-        ultimo.imprimir();
+        //ultimo.imprimir();
         lista.add(ultimo);
         arbol arb = new arbol();
         arb.contar(lista);
@@ -431,6 +431,7 @@ class CUP$Sintactico$actions {
 		String id = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		 Nodo nodo = new Nodo(); 
         nodo.setPadre(id);
+        nodo.setTipo("id");
         RESULT = nodo;
         
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("z",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
