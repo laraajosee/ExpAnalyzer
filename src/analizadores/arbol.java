@@ -8,16 +8,21 @@ package analizadores;
 import java.util.LinkedList;
 import java.util.List;
 import analizadores.Nodo;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class arbol {
 
     int contador = 1;
-    int contadorID=0;
+    int contadorID = 0;
     Nodo nodo = new Nodo();
+    Lista listaa = new Lista();
     String siguientes;
     String cabecera = "";
     int cabeceraINT = 0;
@@ -33,22 +38,75 @@ public class arbol {
             primeros(f);
             ultimos(f);
             imprimirArbol(f);
-            
             cabecera(f);
-            //System.out.println("cabecera: "+cabecera);
             dibujarGraphvyz(f);
-            r();
-            
+            follow(f);
+            listaa.listar();
+            //r();
+
         }
 
     }
+
+    public void follow(Nodo f) {
+        if (f.getIzquierda() != null) {
+            follow(f.getIzquierda());
+        }
+        if (f.getDerecha() != null) {
+            follow(f.getDerecha());
+        }
+
+//        if (f.getPadre().equalsIgnoreCase(".")) {
+//
+//        } else if (f.getPadre().equalsIgnoreCase("*")) {
+//            f.setAnulable(true);
+//        } else if (f.getPadre().equalsIgnoreCase("+")) {
+//            if (f.getIzquierda().isAnulable() == false) {
+//                f.setAnulable(false);
+//            } else {
+//                f.setAnulable(true);
+//            }
+//
+//        }
+        if (f.getDerecha() == null && f.getIzquierda() == null) {
+            listaa.agregarAlFinal(f.getNumeroNodo(), f.getPadre());
+
+        }
+        if (f.getPadre().equalsIgnoreCase(".")) {
+            String[] parts = f.getIzquierda().getUltimos().split(",");
+            //System.out.println(Arrays.asList(parts));
+            for (int i = 0; i < parts.length; i++) {
+                
+                listaa.editarPorPosicion(Integer.parseInt(parts[i])-1, f.getDerecha().getPrimeros());
+                System.out.println(parts[i]);
+                // aqui se puede referir al objeto con arreglo[i];
+            }
+         
+            System.out.println("***************");
+
+        }else if (f.getPadre().equalsIgnoreCase("*")) {
+            String[] parts = f.getIzquierda().getUltimos().split(",");
+            //System.out.println(Arrays.asList(parts));
+            for (int i = 0; i < parts.length; i++) {
+                
+                listaa.editarPorPosicion(Integer.parseInt(parts[i])-1, f.getIzquierda().getPrimeros());
+                System.out.println(parts[i] + " se le ingresa " + f.getIzquierda().getPrimeros());
+                // aqui se puede referir al objeto con arreglo[i];
+            }
+         
+            System.out.println("***************");
+
+        }
+            
+    }
+
     public String obtenerCodigoGraphvyz(Nodo f) {
         String texto = "digraph G"
                 + "{\n"
-                +"bgcolor=\"turquoise\" "
-                +cabecera;
+                + "bgcolor=\"turquoise\" "
+                + cabecera;
         System.out.println("obteniendo graphvbyz");
-        if(f.getPadre()!= null){
+        if (f.getPadre() != null) {
             texto += f.textoGraphvyz();
         }
         texto += "\n}";
@@ -78,7 +136,7 @@ public class arbol {
     public void dibujarGraphvyz(Nodo f) {
         try {
             escribirFichero("archivo.txt", obtenerCodigoGraphvyz(f));
-            
+
             ProcessBuilder proceso;
             proceso = new ProcessBuilder("dot", "-Tpng", "archivo.txt", "-o", "archivo.png");
             proceso.redirectErrorStream();
@@ -88,7 +146,8 @@ public class arbol {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+        abrirarchivo("archivo.png");
+
     }
 
     public void r() {
@@ -173,101 +232,121 @@ public class arbol {
         }
         f.setId(contadorID);
         contadorID++;
-        
 
     }
-    
-    public void primeros(Nodo f){
+
+    public void primeros(Nodo f) {
         if (f.getIzquierda() != null) {
             primeros(f.getIzquierda());
         }
-    
+
         if (f.getDerecha() != null) {
             primeros(f.getDerecha());
         }
         //System.out.println(f.getPadre());
         if (f.getPadre().equalsIgnoreCase(".")) {
-            if(f.getIzquierda().isAnulable()== true){
-                String primeros = f.getIzquierda().getPrimeros()+","+f.getDerecha().getPrimeros();
+            if (f.getIzquierda().isAnulable() == true) {
+                String primeros = f.getIzquierda().getPrimeros() + "," + f.getDerecha().getPrimeros();
                 f.setPrimeros(primeros);
-            }else{
+            } else {
                 f.setPrimeros(f.getIzquierda().getPrimeros());
             }
         } else if (f.getPadre().equalsIgnoreCase("*")) {
             f.setPrimeros(f.getIzquierda().getPrimeros());
-           
+
         } else if (f.getPadre().equalsIgnoreCase("+")) {
-             f.setPrimeros(f.getIzquierda().getPrimeros());
-           
+            f.setPrimeros(f.getIzquierda().getPrimeros());
+
         } else if (f.getPadre().equalsIgnoreCase("?")) {
-             f.setPrimeros(f.getIzquierda().getPrimeros());
+            f.setPrimeros(f.getIzquierda().getPrimeros());
         } else if (f.getPadre().equalsIgnoreCase("|")) {
-            String primeros = f.getIzquierda().getPrimeros()+","+f.getDerecha().getPrimeros();
+            String primeros = f.getIzquierda().getPrimeros() + "," + f.getDerecha().getPrimeros();
             f.setPrimeros(primeros);
-          
+
         }
-        
-        
+
     }
-    
-    public void ultimos(Nodo f){
+
+    public void ultimos(Nodo f) {
         if (f.getIzquierda() != null) {
             ultimos(f.getIzquierda());
         }
-    
+
         if (f.getDerecha() != null) {
             ultimos(f.getDerecha());
         }
         //System.out.println(f.getPadre());
         if (f.getPadre().equalsIgnoreCase(".")) {
-            if(f.getDerecha().isAnulable()== true){
-                String anteriores = f.getIzquierda().getUltimos()+","+f.getDerecha().getUltimos();
+            if (f.getDerecha().isAnulable() == true) {
+                String anteriores = f.getIzquierda().getUltimos() + "," + f.getDerecha().getUltimos();
                 f.setUltimos(anteriores);
-            }else{
-                f.setUltimos(f.getIzquierda().getUltimos());
+            } else {
+                f.setUltimos(f.getDerecha().getUltimos());
             }
         } else if (f.getPadre().equalsIgnoreCase("*")) {
             f.setUltimos(f.getIzquierda().getUltimos());
-           
+
         } else if (f.getPadre().equalsIgnoreCase("+")) {
-             f.setUltimos(f.getIzquierda().getUltimos());
-           
+            f.setUltimos(f.getIzquierda().getUltimos());
+
         } else if (f.getPadre().equalsIgnoreCase("?")) {
-              f.setUltimos(f.getIzquierda().getUltimos());
+            f.setUltimos(f.getIzquierda().getUltimos());
         } else if (f.getPadre().equalsIgnoreCase("|")) {
-            String ultimos = f.getIzquierda().getUltimos()+","+f.getDerecha().getUltimos();
+            String ultimos = f.getIzquierda().getUltimos() + "," + f.getDerecha().getUltimos();
             f.setUltimos(ultimos);
-          
+
         }
-        
-        
+
     }
+
     public void cabecera(Nodo f) {
         if (f.getIzquierda() != null) {
             cabecera(f.getIzquierda());
         }
-      
+
         if (f.getDerecha() != null) {
             cabecera(f.getDerecha());
         }
         //System.out.println(f.getPadre());
-     
-        if(f.getTipo() == "id"){
-            if(f.getPadre().equals(("\" \""))){
-                cabecera += "node"+(String.valueOf(f.getId()))+" [label=\"\\\""+" "+"\\\"\"];\n";
-            }else{
-                cabecera += "node"+(String.valueOf(f.getId()))+" [label="+f.getPadre()+"];\n";
+
+        if (f.getTipo() == "id") {
+            if (f.getPadre().equals(("\" \""))) {
+                //cabecera += "node" + (String.valueOf(f.getId())) + " [label=\"\\\"" + " " + "\\\"\"];\n";
+                cabecera += "node" + (String.valueOf(f.getId())) + "[\n"
+                        + "   color=blue      // The color of the border of the table\n"
+                        + "   label=<\n"
+                        + "    <table border='0' cellpadding=\"1\" cellspacing=\"1\" cellborder='0'>\n"
+                        + "       <tr><td ></td><td bgcolor=\"yellow\">" + f.isAnulable() + "</td><td></td></tr>\n"
+                        + "       <tr><td bgcolor = \"chartreuse1\">" + f.getPrimeros() + "</td ><td bgcolor=\"blueviolet\">" + ("\"\\\"" + " " + "\\\"\"") + "</td><td bgcolor =\"gainsboro\">" + f.getUltimos() + "</td></tr>\n"
+                        + "       <tr><td></td><td bgcolor =\"lightsalmon\">" + f.getNumeroNodo() + "</td><td></td></tr>\n"
+                        + "     </table>\n"
+                        + "  >];";
+            } else {
+                cabecera += "node" + (String.valueOf(f.getId())) + "[\n"
+                        + "   color=blue      // The color of the border of the table\n"
+                        + "   label=<\n"
+                        + "    <table border='0' cellpadding=\"1\" cellspacing=\"1\" cellborder='0'>\n"
+                        + "       <tr><td ></td><td bgcolor=\"yellow\">" + f.isAnulable() + "</td><td></td></tr>\n"
+                        + "       <tr><td bgcolor = \"chartreuse1\">" + f.getPrimeros() + "</td ><td bgcolor=\"blueviolet\">" + f.getPadre() + "</td><td bgcolor =\"gainsboro\">" + f.getUltimos() + "</td></tr>\n"
+                        + "       <tr><td></td><td bgcolor =\"lightsalmon\">" + f.getNumeroNodo() + "</td><td></td></tr>\n"
+                        + "     </table>\n"
+                        + "  >];";
             }
-            
-        }else{
-            cabecera += "node"+(String.valueOf(f.getId()))+" [label=\""+f.getPadre()+"\"];\n";
+
+        } else {
+            cabecera += "node" + (String.valueOf(f.getId())) + "[\n"
+                    + "   color=blue      // The color of the border of the table\n"
+                    + "   label=<\n"
+                    + "    <table border='0' cellpadding=\"1\" cellspacing=\"1\" cellborder='0'>\n"
+                    + "       <tr><td ></td><td bgcolor=\"yellow\">" + f.isAnulable() + "</td><td></td></tr>\n"
+                    + "       <tr><td bgcolor = \"chartreuse1\">" + f.getPrimeros() + "</td ><td bgcolor=\"blueviolet\">" + f.getPadre() + "</td><td bgcolor =\"gainsboro\">" + f.getUltimos() + "</td></tr>\n"
+                    + "       <tr><td></td><td bgcolor =\"lightsalmon\">" + f.getNumeroNodo() + "</td><td></td></tr>\n"
+                    + "     </table>\n"
+                    + "  >];";
         }
-        
-       
-         
+
     }
-    
-    
+
     public void imprimirArbol(Nodo f) {
         if (f.getIzquierda() != null) {
             imprimirArbol(f.getIzquierda());
@@ -288,7 +367,19 @@ public class arbol {
             imprimirArbol(f.getDerecha());
         }
     }
-    
-    
-    
+    public void abrirarchivo(String archivo){
+
+     try {
+
+            File objetofile = new File (archivo);
+            Desktop.getDesktop().open(objetofile);
+
+     }catch (IOException ex) {
+
+            System.out.println(ex);
+
+     }
+
+}                         
+
 }

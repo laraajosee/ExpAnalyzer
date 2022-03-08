@@ -1,11 +1,5 @@
-{ /// DKLASDAS
-//////Conjuntos
-CONJ: Nombre_Conjunto -> a~b;
-CONJ: Nombre_Conjunto -> A~B;
-CONJ: Nombre_Conjunto -> 1~9;
-CONJ: Nombre_Conjunto -> 1,2,9;
-CONJ: Nombre_Conjunto -> a,A,b;
-CONJ: Nombre_Conjunto -> !~!;
-
-////////// EXPRESIONES REGULARES
-igusername -> . . "@" | {minus} {mayus} * | | | {minus} {mayus} {num} "_" ;
+{
+CONJ: minusculas -> a~z;
+CONJ: mayusculas -> A~Z;
+expresion -> * | {mayusculas} | {minusculas} | "\"" | "." " " ;
+<!Comentario!>
