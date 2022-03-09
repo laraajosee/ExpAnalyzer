@@ -13,48 +13,49 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Random;
 import java.util.Vector;
 
 public class arbol {
 
+    Random numAleatorio = new Random();
+    int contadorDocumentos = 0;
+    String stringHtml = "";
     int contador = 1;
     int contadorID = 0;
     Nodo nodo = new Nodo();
     Lista listaa = new Lista();
-    String siguientes;
     String cabecera = "";
-    int cabeceraINT = 0;
     ArrayList<Integer> arr = new ArrayList();
-    
-    String Tablahtml = "<html>\n"
-            + "<head><title>Ejemplo de tabla sencilla</title></head>\n"
-            + "<body>\n"
-            + "\n"
-            + "<h1>Tabla de siguientes</h1>\n"
-            + "\n"
-            + "<table>\n";
 
     public void contar(List hola) {
-        String cabecera = "";
-        listaa.perderLista();
+
         System.out.println(hola);
         List<Nodo> lista = new LinkedList<Nodo>();
         lista = hola;
         for (Nodo f : lista) {
+            cabecera = "";
+            listaa.perderLista();
+            stringHtml = "";
+            contadorID = 0;
+            contador = 1;
             System.out.println("Empezando a imporir arbol afuera de CUP");
             llenarARbol(f);
-            //System.out.println(" padre" +f.getPadre() + " hijo iz " +f.getIzquierda().getPadre() + " derecha: " + f.getDerecha().getPadre());
+//            //System.out.println(" padre" +f.getPadre() + " hijo iz " +f.getIzquierda().getPadre() + " derecha: " + f.getDerecha().getPadre());
             primeros(f);
             ultimos(f);
-            //imprimirArbol(f);
+            System.out.println("....................................................");
+            imprimirArbol(f);
             cabecera(f);
-            dibujarGraphvyz(f);
+            
             follow(f);
-            listaa.listar();
-            //r();
-
+            dibujarGraphvyz(f);
+//            listaa.listar();
+//          
         }
 
     }
@@ -127,7 +128,7 @@ public class arbol {
 
         }
 
-        String stringHtml = "<html>\n"
+        stringHtml = "<html>\n"
                 + "<head><title>Tabla de siguientes</title></head>\n"
                 + "<body>\n"
                 + "<h1>Tabla de Siguientes</h1>"
@@ -137,7 +138,7 @@ public class arbol {
                 + "\n"
                 + "</body>\n"
                 + "</html>\n";
-        escribirFichero("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes\\siguientes.html", stringHtml);
+        
 
     }
 
@@ -194,13 +195,19 @@ public class arbol {
 
     public void dibujarGraphvyz(Nodo f) {
         try {
-            escribirFichero("archivo.txt", obtenerCodigoGraphvyz(f));
+            //numAleatorio.nextInt();
+            String v = String.valueOf(numAleatorio.nextInt());
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+            escribirFichero("D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".txt", obtenerCodigoGraphvyz(f));
 
             ProcessBuilder proceso;
-            proceso = new ProcessBuilder("dot", "-Tpng", "archivo.txt", "-o", "archivo.png");
+            proceso = new ProcessBuilder("dot", "-Tpng", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".txt", "-o", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".png");
             proceso.redirectErrorStream();
+           
             proceso.start();
-            //dot -Tpng sad.txt -o archivo.png
+            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes\\siguientes" + v + ".html"), stringHtml);
+        
+            
 
         } catch (Exception e) {
             e.printStackTrace();

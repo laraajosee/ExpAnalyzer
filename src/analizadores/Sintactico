@@ -50,6 +50,7 @@ ini::= instrucciones;
 
 instrucciones ::= 
      LLAVEABIERTA conjuntos Xreg {:System.out.println("ANALISIS  EXITOSO \n *********************************************" );:}
+     
 ;
 
 conjuntos ::= CONJ DOSPUNTOS IDENTIFICADOR GUION MAYORQUE notacion PUNTOCOMA
@@ -77,7 +78,18 @@ Xreg::= IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a);
         lista.add(ultimo);
         arbol arb = new arbol();
         arb.contar(lista);
-        :};
+        :}
+        |IDENTIFICADOR GUION MAYORQUE z:a PUNTOCOMA {: System.out.println(a);
+        Nodo ultimo = new Nodo();
+        ultimo.setPadre(".");
+        ultimo.setIzquierda((Nodo)a);
+        Nodo numeral = new Nodo();
+        numeral.setPadre("#");
+        ultimo.setDerecha(numeral);
+        //ultimo.imprimir();
+        lista.add(ultimo);
+        :} Xreg
+;
 
 
 
