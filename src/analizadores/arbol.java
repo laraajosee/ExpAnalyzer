@@ -26,7 +26,8 @@ public class arbol {
     String siguientes;
     String cabecera = "";
     int cabeceraINT = 0;
-    int arr[];
+    ArrayList<Integer> arr = new ArrayList();
+    
     String Tablahtml = "<html>\n"
             + "<head><title>Ejemplo de tabla sencilla</title></head>\n"
             + "<body>\n"
@@ -36,6 +37,8 @@ public class arbol {
             + "<table>\n";
 
     public void contar(List hola) {
+        String cabecera = "";
+        listaa.perderLista();
         System.out.println(hola);
         List<Nodo> lista = new LinkedList<Nodo>();
         lista = hola;
@@ -45,7 +48,7 @@ public class arbol {
             //System.out.println(" padre" +f.getPadre() + " hijo iz " +f.getIzquierda().getPadre() + " derecha: " + f.getDerecha().getPadre());
             primeros(f);
             ultimos(f);
-            imprimirArbol(f);
+            //imprimirArbol(f);
             cabecera(f);
             dibujarGraphvyz(f);
             follow(f);
@@ -82,8 +85,17 @@ public class arbol {
 
         } else if (f.getPadre().equalsIgnoreCase("*")) {
             String[] parts = f.getIzquierda().getUltimos().split(",");
-            //System.out.println(Arrays.asList(parts));
+            int[] hola = new int[parts.length];
             for (int i = 0; i < parts.length; i++) {
+                //arr.add(Integer.parseInt(parts[i]));
+                hola[i] = Integer.parseInt(parts[i]);
+                // aqui se puede referir al objeto con arreglo[i];
+            }
+            Arrays.sort(hola);
+            int length = hola.length;
+            length = remove_Duplicate_Elements(hola, length);
+            //System.out.println(Arrays.asList(parts));
+            for (int i = 0; i < hola.length; i++) {
 
                 listaa.editarPorPosicion(Integer.parseInt(parts[i]) - 1, f.getIzquierda().getPrimeros());
                 System.out.println(parts[i] + " se le ingresa " + f.getIzquierda().getPrimeros());
@@ -94,16 +106,17 @@ public class arbol {
 
         } else if (f.getPadre().equalsIgnoreCase("+")) {
             String[] parts = f.getIzquierda().getUltimos().split(",");
-
+            int[] hola = new int[parts.length];
             for (int i = 0; i < parts.length; i++) {
-                arr[i] = Integer.parseInt(parts[i]);
+                //arr.add(Integer.parseInt(parts[i]));
+                hola[i] = Integer.parseInt(parts[i]);
                 // aqui se puede referir al objeto con arreglo[i];
             }
-            Arrays.sort(arr);
-            int length = arr.length;
-            length = remove_Duplicate_Elements(arr, length);
+            Arrays.sort(hola);
+            int length = hola.length;
+            length = remove_Duplicate_Elements(hola, length);
             //System.out.println(Arrays.asList(parts));
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < hola.length; i++) {
 
                 listaa.editarPorPosicion(Integer.parseInt(parts[i]) - 1, f.getIzquierda().getPrimeros());
                 System.out.println(parts[i] + " se le ingresa " + f.getIzquierda().getPrimeros());
@@ -113,17 +126,18 @@ public class arbol {
             System.out.println("***************");
 
         }
+
         String stringHtml = "<html>\n"
                 + "<head><title>Tabla de siguientes</title></head>\n"
                 + "<body>\n"
-                +"<h1>Tabla de Siguientes</h1>"
-                + "<table cellpadding=\"10\" >"
+                + "<h1>Tabla de Siguientes</h1>"
+                + "<table cellpadding=\"10\">"
                 + listaa.siguientesHTML()
                 + "</table>\n"
                 + "\n"
                 + "</body>\n"
                 + "</html>\n";
-        escribirFichero("siguientes.html", stringHtml);
+        escribirFichero("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes\\siguientes.html", stringHtml);
 
     }
 
@@ -191,11 +205,11 @@ public class arbol {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        abrirarchivo("archivo.png");
+        //abrirarchivo("archivo.png");
 
     }
 
-    public void r() {
+    public void raaa() {
         System.out.println("hola");
         try {
 

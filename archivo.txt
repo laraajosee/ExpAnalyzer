@@ -4,7 +4,7 @@ bgcolor="turquoise" node0[
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
        <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">"@"</td><td bgcolor ="gainsboro">1</td></tr>
+       <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">simbols</td><td bgcolor ="gainsboro">1</td></tr>
        <tr><td></td><td bgcolor ="lightsalmon">1</td><td></td></tr>
      </table>
   >];node1[
@@ -12,10 +12,18 @@ bgcolor="turquoise" node0[
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
        <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
+       <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">+</td><td bgcolor ="gainsboro">1</td></tr>
+       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
+     </table>
+  >];node2[
+   color=blue      // The color of the border of the table
+   label=<
+    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
+       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
        <tr><td bgcolor = "chartreuse1">2</td ><td bgcolor="blueviolet">minus</td><td bgcolor ="gainsboro">2</td></tr>
        <tr><td></td><td bgcolor ="lightsalmon">2</td><td></td></tr>
      </table>
-  >];node2[
+  >];node3[
    color=blue      // The color of the border of the table
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
@@ -23,7 +31,7 @@ bgcolor="turquoise" node0[
        <tr><td bgcolor = "chartreuse1">3</td ><td bgcolor="blueviolet">mayus</td><td bgcolor ="gainsboro">3</td></tr>
        <tr><td></td><td bgcolor ="lightsalmon">3</td><td></td></tr>
      </table>
-  >];node3[
+  >];node4[
    color=blue      // The color of the border of the table
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
@@ -31,7 +39,15 @@ bgcolor="turquoise" node0[
        <tr><td bgcolor = "chartreuse1">2,3</td ><td bgcolor="blueviolet">|</td><td bgcolor ="gainsboro">2,3</td></tr>
        <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
      </table>
-  >];node4[
+  >];node5[
+   color=blue      // The color of the border of the table
+   label=<
+    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
+       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
+       <tr><td bgcolor = "chartreuse1">2,3</td ><td bgcolor="blueviolet">+</td><td bgcolor ="gainsboro">2,3</td></tr>
+       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
+     </table>
+  >];node6[
    color=blue      // The color of the border of the table
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
@@ -39,108 +55,29 @@ bgcolor="turquoise" node0[
        <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">.</td><td bgcolor ="gainsboro">2,3</td></tr>
        <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
      </table>
-  >];node5[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">4</td ><td bgcolor="blueviolet">minus</td><td bgcolor ="gainsboro">4</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">4</td><td></td></tr>
-     </table>
-  >];node6[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">5</td ><td bgcolor="blueviolet">mayus</td><td bgcolor ="gainsboro">5</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">5</td><td></td></tr>
-     </table>
   >];node7[
    color=blue      // The color of the border of the table
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
        <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">4,5</td ><td bgcolor="blueviolet">|</td><td bgcolor ="gainsboro">4,5</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
+       <tr><td bgcolor = "chartreuse1">4</td ><td bgcolor="blueviolet">#</td><td bgcolor ="gainsboro">4</td></tr>
+       <tr><td></td><td bgcolor ="lightsalmon">4</td><td></td></tr>
      </table>
   >];node8[
    color=blue      // The color of the border of the table
    label=<
     <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
        <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">6</td ><td bgcolor="blueviolet">num</td><td bgcolor ="gainsboro">6</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">6</td><td></td></tr>
-     </table>
-  >];node9[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">4,5,6</td ><td bgcolor="blueviolet">|</td><td bgcolor ="gainsboro">4,5,6</td></tr>
+       <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">.</td><td bgcolor ="gainsboro">4</td></tr>
        <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
      </table>
-  >];node10[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">7</td ><td bgcolor="blueviolet">"_"</td><td bgcolor ="gainsboro">7</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">7</td><td></td></tr>
-     </table>
-  >];node11[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">4,5,6,7</td ><td bgcolor="blueviolet">|</td><td bgcolor ="gainsboro">4,5,6,7</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
-     </table>
-  >];node12[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">true</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">4,5,6,7</td ><td bgcolor="blueviolet">*</td><td bgcolor ="gainsboro">4,5,6,7</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
-     </table>
-  >];node13[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">.</td><td bgcolor ="gainsboro">2,3,4,5,6,7</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
-     </table>
-  >];node14[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">8</td ><td bgcolor="blueviolet">#</td><td bgcolor ="gainsboro">8</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">8</td><td></td></tr>
-     </table>
-  >];node15[
-   color=blue      // The color of the border of the table
-   label=<
-    <table border='0' cellpadding="1" cellspacing="1" cellborder='0'>
-       <tr><td ></td><td bgcolor="yellow">false</td><td></td></tr>
-       <tr><td bgcolor = "chartreuse1">1</td ><td bgcolor="blueviolet">.</td><td bgcolor ="gainsboro">8</td></tr>
-       <tr><td></td><td bgcolor ="lightsalmon">0</td><td></td></tr>
-     </table>
-  >];node15->node13->node4->node0
-node4->node3->node1
-node3->node2
+  >];node8->node6->node1->node0
 
-
-node13->node12->node11->node9->node7->node5
-node7->node6
-
-node9->node8
-
-node11->node10
+node6->node5->node4->node2
+node4->node3
 
 
 
-node15->node14
+node8->node7
 
 }

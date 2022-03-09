@@ -75,7 +75,10 @@ public class Lista {
         tamanio++;
 
     }
-
+    public void perderLista(){
+        inicio = null;
+        
+    }        
     public void listar() {
         // Verifica si la lista contiene elementoa.
         if (!esVacia()) {
