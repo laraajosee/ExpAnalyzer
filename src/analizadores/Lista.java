@@ -86,7 +86,7 @@ public class Lista {
             // Recorre la lista hasta el final.
             while (aux != null) {
                 // Imprime en pantalla el valor del nodo.
-                System.out.print(i + ".[ " + aux.getValor() +","+aux.getTerminal() +"Siguientes: "+aux.getSiguientes()+" ]" + " ->  ");
+                System.out.print(i + ".[ " + aux.getValor() + "," + aux.getTerminal() + "Siguientes: " + aux.getSiguientes() + " ]" + " ->  ");
                 // Avanza al siguiente nodo.
                 aux = aux.getSiguiente();
                 // Incrementa el contador de la posión.
@@ -94,22 +94,48 @@ public class Lista {
             }
         }
     }
-    public void editarPorPosicion(int posicion , String valor){
+
+    public String siguientesHTML() {
+        // Verifica si la lista contiene elementoa.
+        String conca = "<tr>\n";
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            NodoS aux = inicio;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while (aux != null) {
+                // Imprime en pantalla el valor del nodo.
+                //System.out.print(i + ".[ " + aux.getValor() +","+aux.getTerminal() +"Siguientes: "+aux.getSiguientes()+" ]" + " ->  ");
+                conca += "  <td>"+aux.getValor()+"</td>\n"
+                + "  <td>"+aux.getTerminal()+"</td>\n"
+                + "  <td>"+aux.getSiguientes()+"</td>\n"
+                + "  </tr>";
+                // Avanza al siguiente nodo.
+                aux = aux.getSiguiente();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+     
+        return conca;
+    }
+
+    public void editarPorPosicion(int posicion, String valor) {
         // Verifica si la posición ingresada se encuentre en el rango
         // >= 0 y < que el numero de elementos del la lista.
-        if(posicion>=0 && posicion<tamanio){
+        if (posicion >= 0 && posicion < tamanio) {
             // Consulta si el nodo a eliminar es el primero.
-            if(posicion == 0){
+            if (posicion == 0) {
                 // Alctualiza el valor delprimer nodo.
-                 if (inicio.getSiguientes() != null) {
-                    inicio.setSiguientes(inicio.getSiguientes()+","+valor);
+                if (inicio.getSiguientes() != null) {
+                    inicio.setSiguientes(inicio.getSiguientes() + "," + valor);
 
-                }else{
-                     
+                } else {
+
                     inicio.setSiguientes(valor);
-                    }
-            }
-            else{
+                }
+            } else {
                 // En caso que el nodo a eliminar este por el medio 
                 // o sea el ultimo
                 NodoS aux = inicio;
@@ -119,12 +145,12 @@ public class Lista {
                 }
                 // Alctualiza el valor del nodo.
                 if (aux.getSiguientes() != null) {
-                    aux.setSiguientes(aux.getSiguientes()+","+valor);
+                    aux.setSiguientes(aux.getSiguientes() + "," + valor);
 
-                }else{
-                     
+                } else {
+
                     aux.setSiguientes(valor);
-                    }
+                }
             }
         }
     }

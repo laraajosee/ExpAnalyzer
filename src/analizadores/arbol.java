@@ -26,6 +26,14 @@ public class arbol {
     String siguientes;
     String cabecera = "";
     int cabeceraINT = 0;
+    int arr[];
+    String Tablahtml = "<html>\n"
+            + "<head><title>Ejemplo de tabla sencilla</title></head>\n"
+            + "<body>\n"
+            + "\n"
+            + "<h1>Tabla de siguientes</h1>\n"
+            + "\n"
+            + "<table>\n";
 
     public void contar(List hola) {
         System.out.println(hola);
@@ -56,18 +64,6 @@ public class arbol {
             follow(f.getDerecha());
         }
 
-//        if (f.getPadre().equalsIgnoreCase(".")) {
-//
-//        } else if (f.getPadre().equalsIgnoreCase("*")) {
-//            f.setAnulable(true);
-//        } else if (f.getPadre().equalsIgnoreCase("+")) {
-//            if (f.getIzquierda().isAnulable() == false) {
-//                f.setAnulable(false);
-//            } else {
-//                f.setAnulable(true);
-//            }
-//
-//        }
         if (f.getDerecha() == null && f.getIzquierda() == null) {
             listaa.agregarAlFinal(f.getNumeroNodo(), f.getPadre());
 
@@ -76,28 +72,77 @@ public class arbol {
             String[] parts = f.getIzquierda().getUltimos().split(",");
             //System.out.println(Arrays.asList(parts));
             for (int i = 0; i < parts.length; i++) {
-                
-                listaa.editarPorPosicion(Integer.parseInt(parts[i])-1, f.getDerecha().getPrimeros());
+
+                listaa.editarPorPosicion(Integer.parseInt(parts[i]) - 1, f.getDerecha().getPrimeros());
                 System.out.println(parts[i]);
                 // aqui se puede referir al objeto con arreglo[i];
             }
-         
+
             System.out.println("***************");
 
-        }else if (f.getPadre().equalsIgnoreCase("*")) {
+        } else if (f.getPadre().equalsIgnoreCase("*")) {
             String[] parts = f.getIzquierda().getUltimos().split(",");
             //System.out.println(Arrays.asList(parts));
             for (int i = 0; i < parts.length; i++) {
-                
-                listaa.editarPorPosicion(Integer.parseInt(parts[i])-1, f.getIzquierda().getPrimeros());
+
+                listaa.editarPorPosicion(Integer.parseInt(parts[i]) - 1, f.getIzquierda().getPrimeros());
                 System.out.println(parts[i] + " se le ingresa " + f.getIzquierda().getPrimeros());
                 // aqui se puede referir al objeto con arreglo[i];
             }
-         
+
+            System.out.println("***************");
+
+        } else if (f.getPadre().equalsIgnoreCase("+")) {
+            String[] parts = f.getIzquierda().getUltimos().split(",");
+
+            for (int i = 0; i < parts.length; i++) {
+                arr[i] = Integer.parseInt(parts[i]);
+                // aqui se puede referir al objeto con arreglo[i];
+            }
+            Arrays.sort(arr);
+            int length = arr.length;
+            length = remove_Duplicate_Elements(arr, length);
+            //System.out.println(Arrays.asList(parts));
+            for (int i = 0; i < arr.length; i++) {
+
+                listaa.editarPorPosicion(Integer.parseInt(parts[i]) - 1, f.getIzquierda().getPrimeros());
+                System.out.println(parts[i] + " se le ingresa " + f.getIzquierda().getPrimeros());
+                // aqui se puede referir al objeto con arreglo[i];
+            }
+
             System.out.println("***************");
 
         }
-            
+        String stringHtml = "<html>\n"
+                + "<head><title>Tabla de siguientes</title></head>\n"
+                + "<body>\n"
+                +"<h1>Tabla de Siguientes</h1>"
+                + "<table cellpadding=\"10\" >"
+                + listaa.siguientesHTML()
+                + "</table>\n"
+                + "\n"
+                + "</body>\n"
+                + "</html>\n";
+        escribirFichero("siguientes.html", stringHtml);
+
+    }
+
+    public static int remove_Duplicate_Elements(int arr[], int n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+        int[] tempA = new int[n];
+        int j = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] != arr[i + 1]) {
+                tempA[j++] = arr[i];
+            }
+        }
+        tempA[j++] = arr[n - 1];
+        for (int i = 0; i < j; i++) {
+            arr[i] = tempA[i];
+        }
+        return j;
     }
 
     public String obtenerCodigoGraphvyz(Nodo f) {
@@ -367,19 +412,20 @@ public class arbol {
             imprimirArbol(f.getDerecha());
         }
     }
-    public void abrirarchivo(String archivo){
 
-     try {
+    public void abrirarchivo(String archivo) {
 
-            File objetofile = new File (archivo);
+        try {
+
+            File objetofile = new File(archivo);
             Desktop.getDesktop().open(objetofile);
 
-     }catch (IOException ex) {
+        } catch (IOException ex) {
 
             System.out.println(ex);
 
-     }
+        }
 
-}                         
+    }
 
 }
