@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Vector;
 
@@ -27,8 +28,11 @@ public class arbol {
     String stringHtml = "";
     int contador = 1;
     int contadorID = 0;
+    int contadorEstados = 1;
+    boolean estadoUno = true;
     Nodo nodo = new Nodo();
     Lista listaa = new Lista();
+    listaAutomata listaAutomata = new listaAutomata();
     String cabecera = "";
     ArrayList<Integer> arr = new ArrayList();
 
@@ -40,6 +44,7 @@ public class arbol {
         for (Nodo f : lista) {
             cabecera = "";
             listaa.perderLista();
+            listaAutomata.perderLista();
             stringHtml = "";
             contadorID = 0;
             contador = 1;
@@ -51,9 +56,10 @@ public class arbol {
             System.out.println("....................................................");
             imprimirArbol(f);
             cabecera(f);
-            
+
             follow(f);
             dibujarGraphvyz(f);
+            estados(f);
 //            listaa.listar();
 //          
         }
@@ -138,7 +144,59 @@ public class arbol {
                 + "\n"
                 + "</body>\n"
                 + "</html>\n";
-        
+
+    }
+
+    public void estados(Nodo f) {
+        Queue queue = new LinkedList<String>();
+        String[] parts = f.getPrimeros().split(",");
+        int[] hola = new int[parts.length];
+        for (int i = 0; i < hola.length; i++) {
+            queue.add(parts[i]);
+        }
+        listaAutomata.agregarAlFinal(f.getPrimeros(), "S0");
+        NodoS aux = new NodoS();
+        NodoAutomata estadoSiguiente = new NodoAutomata();
+        NodoAutomata estadoActual = new NodoAutomata();
+        boolean auxEstados = false;
+
+        while (queue != null) {
+            String head = (String) queue.peek(); //1
+            aux = listaa.buscar((Integer.parseInt(head)));
+            if(aux.getTerminal() == "#"){
+                break;
+            }
+            auxEstados = listaAutomata.buscar(aux.getSiguientes()); //busca si ya existe el estado 
+            if(auxEstados == false){ //crea nuevo nodo
+                //estadoActual = listaAutomata.buscarNodo("S"+contadorEstados);
+                listaAutomata.agregarAlFinal(aux.getSiguientes(), "S"+contadorEstados);
+                estadoSiguiente = listaAutomata.buscarNodo(aux.getSiguientes()); //posicionandome en el estado de la pila buscandolo por sus siguientes
+                
+                //estadoSiguiente.setTransiciones("");
+                contadorEstados++;
+            }else{
+                //System.out.println("el mismo nodo");
+                int o = 0;
+                o = contadorEstados-1;
+                listaAutomata.agregarAlFinal(aux.getSiguientes(), "S"+o);
+            } 
+           //System.out.println("siguientes de pila:" + aux.getSiguientes());
+            String[] parts2 = aux.getSiguientes().split(",");
+            int[] hola2 = new int[parts2.length];
+            for (int i = 0; i < hola2.length; i++) {
+                //System.out.println(parts2[i]);
+                queue.add(parts2[i]);
+            }
+            queue.remove();
+
+            //System.out.println("hola");
+            
+
+        }
+
+        listaa.listar();;
+        //System.out.println("\n" + queue);
+        listaAutomata.listar();
 
     }
 
@@ -203,11 +261,9 @@ public class arbol {
             ProcessBuilder proceso;
             proceso = new ProcessBuilder("dot", "-Tpng", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".txt", "-o", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".png");
             proceso.redirectErrorStream();
-           
+
             proceso.start();
-            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes\\siguientes" + v + ".html"), stringHtml);
-        
-            
+            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes_#201344708\\archivo" + v + ".html"), stringHtml);
 
         } catch (Exception e) {
             e.printStackTrace();

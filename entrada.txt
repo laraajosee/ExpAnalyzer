@@ -1,11 +1,11 @@
-//ESTO DEBE DE IGNORARSE [ T H E G A M E
-{
+{ /// DKLASDAS
+//////Conjuntos
+CONJ: Nombre_Conjunto -> a~b;
+CONJ: Nombre_Conjunto -> A~B;
+CONJ: Nombre_Conjunto -> 1~9;
+CONJ: Nombre_Conjunto -> 1,2,9;
+CONJ: Nombre_Conjunto -> a,A,b;
+CONJ: Nombre_Conjunto -> !~!;
 
-CONJ: num -> 0,1,2,3,4,5,6,7,8,9;
-CONJ: minus ->a~z;
-CONJ: mayus -> A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z;
-CONJ: simbols -> #~@;
-
-// COMENTARIO
-					  
-igusername -> . . "@" | {minus} {mayus} * | | | {minus} {mayus} {num} "_" ; // en infijo es "@".({minus}|{mayus}).({minus}|{mayus}|{num}|"_")*;
+////////// EXPRESIONES REGULARES
+igusername -> . . "@" | {minus} {mayus} * | | | {minus} {mayus} {num} "_" ;

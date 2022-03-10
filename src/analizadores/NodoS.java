@@ -12,12 +12,13 @@ public class NodoS {
     private String terminal;
     private String siguientes;
     private NodoS siguiente;
+    private String transiciones;
     /**
      * Constructor que inicializamos el valor de las variables.
      */
     public void Nodo(){
-        this.valor = 0;
-        this.siguiente = null;
+        this.setValor(0);
+        this.setSiguiente(null);
     }
     
     // Métodos get y set para los atributos.
@@ -64,5 +65,19 @@ public class NodoS {
      */
     public void setSiguientes(String siguientes) {
         this.siguientes = siguientes;
+    }
+
+    /**
+     * @return the transiciones
+     */
+    public String getTransiciones() {
+        return transiciones;
+    }
+
+    /**
+     * @param transiciones the transiciones to set
+     */
+    public void setTransiciones(String transiciones) {
+        this.transiciones = transiciones;
     }
 }

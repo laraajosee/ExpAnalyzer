@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package analizadores;
 
 /**
  *
  * @author che
  */
-public class Lista {
+public class listaAutomata {
 
     // Puntero que indica el inicio de la lista o conocida tambien
     // como cabeza de la lista.
-    private NodoS inicio;
+    private NodoAutomata inicio;
     // Variable para registrar el tamaño de la lista.
     private int tamanio;
 
@@ -49,12 +44,13 @@ public class Lista {
      *
      * @param valor a agregar.
      */
-    public void agregarAlFinal(int valor, String padre) {
+    public void agregarAlFinal(String valor, String estado) {
         // Define un nuevo nodo.
-        NodoS nuevo = new NodoS();
+        NodoAutomata nuevo = new NodoAutomata();
         // Agrega al valor al nodo.
         nuevo.setValor(valor);
-        nuevo.setTerminal(padre);
+        nuevo.setEstado(estado);
+        //nuevo.setTerminal(padre);
         // Consulta si la lista esta vacia.
         if (esVacia()) {
             // Inicializa la lista agregando como inicio al nuevo nodo.
@@ -63,7 +59,7 @@ public class Lista {
             //y agrega el nuevo.
         } else {
             // Crea ua copia de la lista.
-            NodoS aux = inicio;
+            NodoAutomata aux = inicio;
             // Recorre la lista hasta llegar al ultimo nodo.
             while (aux.getSiguiente() != null) {
                 aux = aux.getSiguiente();
@@ -75,21 +71,23 @@ public class Lista {
         tamanio++;
 
     }
-    public void perderLista(){
+
+    public void perderLista() {
         inicio = null;
-        
-    }        
+
+    }
+
     public void listar() {
         // Verifica si la lista contiene elementoa.
         if (!esVacia()) {
             // Crea una copia de la lista.
-            NodoS aux = inicio;
+            NodoAutomata aux = inicio;
             // Posicion de los elementos de la lista.
             int i = 0;
             // Recorre la lista hasta el final.
             while (aux != null) {
                 // Imprime en pantalla el valor del nodo.
-                System.out.print(i + ".[ " + aux.getValor() + "," + aux.getTerminal() + "Siguientes: " + aux.getSiguientes() + " ]" + " ->  ");
+                System.out.print(i + ".[ " +aux.getEstado()+"-->"+ aux.getValor() + " ]" + " ->  ");
                 // Avanza al siguiente nodo.
                 aux = aux.getSiguiente();
                 // Incrementa el contador de la posión.
@@ -97,47 +95,66 @@ public class Lista {
             }
         }
     }
-     
 
     public String siguientesHTML() {
         // Verifica si la lista contiene elementoa.
         String conca = "<tr>\n";
         if (!esVacia()) {
             // Crea una copia de la lista.
-            NodoS aux = inicio;
+            NodoAutomata aux = inicio;
             // Posicion de los elementos de la lista.
             int i = 0;
             // Recorre la lista hasta el final.
             while (aux != null) {
                 // Imprime en pantalla el valor del nodo.
                 //System.out.print(i + ".[ " + aux.getValor() +","+aux.getTerminal() +"Siguientes: "+aux.getSiguientes()+" ]" + " ->  ");
-                conca += "  <td>"+aux.getValor()+"</td>\n"
-                + "  <td>"+aux.getTerminal()+"</td>\n"
-                + "  <td>"+aux.getSiguientes()+"</td>\n"
-                + "  </tr>";
+                conca += "  <td>" + aux.getValor() + "</td>\n"
+                        //+ "  <td>"+aux.getTerminal()+"</td>\n"
+                        + "  <td>" + aux.getSiguientes() + "</td>\n"
+                        + "  </tr>";
                 // Avanza al siguiente nodo.
                 aux = aux.getSiguiente();
                 // Incrementa el contador de la posión.
                 i++;
             }
         }
-     
+
         return conca;
     }
-    public NodoS buscar(int referencia){
+
+    public boolean buscar(String referencia) {
         // Crea una copia de la lista.
-        NodoS aux = inicio;
+        NodoAutomata aux = inicio;
         // Bandera para indicar si el valor existe.
         boolean encontrado = false;
         // Recorre la lista hasta encontrar el elemento o hasta 
         // llegar al final de la lista.
-        while(aux != null && encontrado != true){
+        while (aux != null && encontrado != true) {
             // Consulta si el valor del nodo es igual al de referencia.
-            if (referencia == aux.getValor()){
+            if (referencia.equals(aux.getValor())) {
                 // Canbia el valor de la bandera.
                 encontrado = true;
+            } else {
+                // Avansa al siguiente. nodo.
+                aux = aux.getSiguiente();
             }
-            else{
+        }
+        // Retorna el resultado de la bandera.
+        return encontrado;
+        
+    }   public NodoAutomata buscarNodo(String referencia) {
+        // Crea una copia de la lista.
+        NodoAutomata aux = inicio;
+        // Bandera para indicar si el valor existe.
+        boolean encontrado = false;
+        // Recorre la lista hasta encontrar el elemento o hasta 
+        // llegar al final de la lista.
+        while (aux != null && encontrado != true) {
+            // Consulta si el valor del nodo es igual al de referencia.
+            if (referencia.equals(aux.getSiguientes())) {
+                // Canbia el valor de la bandera.
+                encontrado = true;
+            } else {
                 // Avansa al siguiente. nodo.
                 aux = aux.getSiguiente();
             }
@@ -145,7 +162,6 @@ public class Lista {
         // Retorna el resultado de la bandera.
         return aux;
     }
-
     public void editarPorPosicion(int posicion, String valor) {
         // Verifica si la posición ingresada se encuentre en el rango
         // >= 0 y < que el numero de elementos del la lista.
@@ -163,7 +179,7 @@ public class Lista {
             } else {
                 // En caso que el nodo a eliminar este por el medio 
                 // o sea el ultimo
-                NodoS aux = inicio;
+                NodoAutomata aux = inicio;
                 // Recorre la lista hasta lleger al nodo anterior al eliminar.
                 for (int i = 0; i < posicion; i++) {
                     aux = aux.getSiguiente();
