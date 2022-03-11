@@ -146,6 +146,30 @@ public class Lista {
         }
         return siguientes;
     }
+     public int aceptacion() {
+        // Verifica si la lista contiene elementoa.
+        int siguientes = 0;
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            NodoS aux = inicio;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while (aux != null) {
+                // Imprime en pantalla el valor del nodo.
+               // System.out.print(i + ".[ " + aux.getValor() + "," + aux.getTerminal() + "Siguientes: " + aux.getSiguientes() + " ]" + " ->  ");
+                if(aux.getTerminal().equals("#")){
+                    //System.out.println("estado siguiente encontrado en:"+aux.getSiguientes()+"con tansicion"+aux.getTerminal());
+                    siguientes += aux.getValor();
+                    
+                }
+                aux = aux.getSiguiente();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+        return siguientes;
+    }
 
     public String siguientesHTML() {
         // Verifica si la lista contiene elementoa.

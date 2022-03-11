@@ -25,6 +25,7 @@ public class arbol {
 
     Random numAleatorio = new Random();
     int contadorDocumentos = 0;
+    int aceptacion;
     String stringHtml = "";
     String stringAutomata = "";
     int contador = 1;
@@ -44,6 +45,7 @@ public class arbol {
         List<Nodo> lista = new LinkedList<Nodo>();
         lista = hola;
         for (Nodo f : lista) {
+            aceptacion=0;
             stringEstados = "";
             cabecera = "";
             stringAutomata = "";
@@ -171,7 +173,7 @@ public class arbol {
             String head = (String) queue.peek(); //1
             aux = listaa.buscar((Integer.parseInt(head)));
             if (aux.getTerminal() == "#") {
-                
+                aceptacion = aux.getValor();
                 break;
             }
             auxEstados = listaAutomata.buscar(aux.getSiguientes()); //busca si ya existe el estado 
@@ -256,6 +258,7 @@ public class arbol {
             String b = listaa.buscarSiguietnes(Integer.parseInt(head));
             String terminal  = listaa.buscarTerminal(Integer.parseInt(head));
             String c = listaAutomata.buscarEstado(b);
+            
             
             System.out.println("estado actual "+a);
             System.out.println("estado siguiente "+b+"con terminal"+terminal);
