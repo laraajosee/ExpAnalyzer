@@ -98,6 +98,54 @@ public class Lista {
         }
     }
      
+    public String buscarSiguietnes(int a) {
+        // Verifica si la lista contiene elementoa.
+        String siguientes = "";
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            NodoS aux = inicio;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while (aux != null) {
+                // Imprime en pantalla el valor del nodo.
+               // System.out.print(i + ".[ " + aux.getValor() + "," + aux.getTerminal() + "Siguientes: " + aux.getSiguientes() + " ]" + " ->  ");
+                if(aux.getValor() == a){
+                    //System.out.println("estado siguiente encontrado en:"+aux.getSiguientes()+"con tansicion"+aux.getTerminal());
+                    siguientes = aux.getSiguientes();
+                    break;
+                }
+                aux = aux.getSiguiente();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+        return siguientes;
+    }
+     public String buscarTerminal(int a) {
+        // Verifica si la lista contiene elementoa.
+        String siguientes = "";
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            NodoS aux = inicio;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while (aux != null) {
+                // Imprime en pantalla el valor del nodo.
+               // System.out.print(i + ".[ " + aux.getValor() + "," + aux.getTerminal() + "Siguientes: " + aux.getSiguientes() + " ]" + " ->  ");
+                if(aux.getValor() == a){
+                    //System.out.println("estado siguiente encontrado en:"+aux.getSiguientes()+"con tansicion"+aux.getTerminal());
+                    siguientes = aux.getTerminal();
+                    break;
+                }
+                aux = aux.getSiguiente();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+        return siguientes;
+    }
 
     public String siguientesHTML() {
         // Verifica si la lista contiene elementoa.
@@ -145,6 +193,32 @@ public class Lista {
         // Retorna el resultado de la bandera.
         return aux;
     }
+     public String mandarSiguientes(int referencia){
+        // Crea una copia de la lista.
+        String siguientes = "";
+        NodoS aux = inicio;
+        // Bandera para indicar si el valor existe.
+        boolean encontrado = false;
+        // Recorre la lista hasta encontrar el elemento o hasta 
+        // llegar al final de la lista.
+        while(aux != null && encontrado != true){
+            // Consulta si el valor del nodo es igual al de referencia.
+            if (referencia == aux.getValor()){
+                // Canbia el valor de la bandera.
+                siguientes = "";
+                siguientes = aux.getSiguientes();
+                encontrado = true;
+            }
+            else{
+                // Avansa al siguiente. nodo.
+                aux = aux.getSiguiente();
+            }
+        }
+        // Retorna el resultado de la bandera.
+        return siguientes;
+    }
+    
+    
 
     public void editarPorPosicion(int posicion, String valor) {
         // Verifica si la posición ingresada se encuentre en el rango

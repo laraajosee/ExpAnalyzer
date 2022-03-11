@@ -30,6 +30,7 @@ public class arbol {
     int contadorID = 0;
     int contadorEstados = 1;
     boolean estadoUno = true;
+    String stringEstados = "";
     Nodo nodo = new Nodo();
     Lista listaa = new Lista();
     listaAutomata listaAutomata = new listaAutomata();
@@ -42,6 +43,7 @@ public class arbol {
         List<Nodo> lista = new LinkedList<Nodo>();
         lista = hola;
         for (Nodo f : lista) {
+            stringEstados = "";
             cabecera = "";
             listaa.perderLista();
             listaAutomata.perderLista();
@@ -58,8 +60,9 @@ public class arbol {
             cabecera(f);
 
             follow(f);
-            dibujarGraphvyz(f);
             estados(f);
+            dibujarGraphvyz(f);
+           
 //            listaa.listar();
 //          
         }
@@ -159,28 +162,41 @@ public class arbol {
         NodoAutomata estadoSiguiente = new NodoAutomata();
         NodoAutomata estadoActual = new NodoAutomata();
         boolean auxEstados = false;
+        String estado = "S0";
+        String transicion = "";
 
         while (queue != null) {
             String head = (String) queue.peek(); //1
             aux = listaa.buscar((Integer.parseInt(head)));
-            if(aux.getTerminal() == "#"){
+            if (aux.getTerminal() == "#") {
+                
                 break;
             }
             auxEstados = listaAutomata.buscar(aux.getSiguientes()); //busca si ya existe el estado 
-            if(auxEstados == false){ //crea nuevo nodo
+            System.out.println(auxEstados);
+            if (auxEstados == false) { //crea nuevo nodo
                 //estadoActual = listaAutomata.buscarNodo("S"+contadorEstados);
-                listaAutomata.agregarAlFinal(aux.getSiguientes(), "S"+contadorEstados);
-                estadoSiguiente = listaAutomata.buscarNodo(aux.getSiguientes()); //posicionandome en el estado de la pila buscandolo por sus siguientes
-                
+                listaAutomata.agregarAlFinal(aux.getSiguientes(), "S" + contadorEstados);
+                estadoSiguiente = listaAutomata.buscarNodo(aux.getSiguientes());
+               //posicionandome en el estado de la pila buscandolo por sus siguientes
+                //transicion = estado+"-->"+aux.getTerminal()+estadoSiguiente.getEstado();
+                //System.out.println("estadpo transiciones "+estadoSiguiente);
+               
+               // System.out.println(transicion);
                 //estadoSiguiente.setTransiciones("");
+                estado = "S" + contadorEstados;
                 contadorEstados++;
-            }else{
+            } else {
                 //System.out.println("el mismo nodo");
                 int o = 0;
-                o = contadorEstados-1;
-                listaAutomata.agregarAlFinal(aux.getSiguientes(), "S"+o);
-            } 
-           //System.out.println("siguientes de pila:" + aux.getSiguientes());
+                o = contadorEstados - 1;
+                listaAutomata.agregarAlFinal(aux.getSiguientes(), "S" + o);
+                estado = "S" + o;
+               
+                //String transicion = estado+"-->"+aux.getTerminal()+estadoSiguiente.getEstado();
+                //System.out.println(transicion);
+            }
+            //System.out.println("siguientes de pila:" + aux.getSiguientes());
             String[] parts2 = aux.getSiguientes().split(",");
             int[] hola2 = new int[parts2.length];
             for (int i = 0; i < hola2.length; i++) {
@@ -190,16 +206,90 @@ public class arbol {
             queue.remove();
 
             //System.out.println("hola");
-            
-
         }
 
         listaa.listar();;
         //System.out.println("\n" + queue);
+        System.out.println("\n");
         listaAutomata.listar();
+        tablaEstados(f);
+        
+       
 
     }
+    public void tablaEstados (Nodo f){
+        Queue queue = new LinkedList<String>();
+        String[] parts = f.getPrimeros().split(",");
+        int[] hola = new int[parts.length];
+        for (int i = 0; i < hola.length; i++) {
+            queue.add(parts[i]);
+        }
+        listaAutomata.agregarAlFinal(f.getPrimeros(), "S0");
+        NodoS aux = new NodoS();
+        NodoAutomata estadoSiguiente = new NodoAutomata();
+        NodoAutomata estadoActual = new NodoAutomata();
+        boolean auxEstados = false;
+        String estado = "S0";
+        String transicion = "";
 
+        while (queue != null) {
+            String head = (String) queue.peek(); //1
+            aux = listaa.buscar((Integer.parseInt(head)));
+            if (aux.getTerminal() == "#") {
+                transicion += "  <td>" + aux.getValor() + "</td>\n"
+                        + "  <td>" + "--"+"#"+"-->" + "</td>\n"
+                        + "  <td>" + "-------" + "</td>\n"
+                        + "  </tr>";
+                
+                break;
+            }
+            System.out.println(head);
+            String a = listaAutomata.buscarSiguietnes(head);
+            String b = listaa.buscarSiguietnes(Integer.parseInt(head));
+            String terminal  = listaa.buscarTerminal(Integer.parseInt(head));
+            String c = listaAutomata.buscarEstado(b);
+            
+            System.out.println("estado actual "+a);
+            System.out.println("estado siguiente "+b+"con terminal"+terminal);
+            System.out.println("estado siguiente "+c);
+            
+            transicion += "  <td>" + a + "</td>\n"
+                        + "  <td>" + "--"+terminal+"-->" + "</td>\n"
+                        + "  <td>" + b + "</td>\n"
+                        + "  <td>" + c + "</td>\n"
+                        + "  </tr>";
+                //System.out.println(transicion);
+            
+            
+            String[] parts2 = aux.getSiguientes().split(",");
+            int[] hola2 = new int[parts2.length];
+            for (int i = 0; i < hola2.length; i++) {
+                //System.out.println(parts2[i]);
+                queue.add(parts2[i]);
+            }
+            queue.remove();
+
+            //System.out.println("hola");
+        }
+        
+    
+        //System.out.println("\n" + queue);
+        System.out.println("\n");
+           stringEstados = "<html>\n"
+                + "<head><title>Tabla de Estados</title></head>\n"
+                + "<body>\n"
+                + "<h1>Tabla de Estados</h1>"
+                + "<table cellpadding=\"10\">"
+                + transicion
+                + "</table>\n"
+                + "\n"
+                + "</body>\n"
+                + "</html>\n";
+         
+      
+        
+        
+    }
     public static int remove_Duplicate_Elements(int arr[], int n) {
         if (n == 0 || n == 1) {
             return n;
@@ -256,15 +346,15 @@ public class arbol {
             //numAleatorio.nextInt();
             String v = String.valueOf(numAleatorio.nextInt());
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-            escribirFichero("D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".txt", obtenerCodigoGraphvyz(f));
+            escribirFichero("D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#201344708\\archivo" + v + ".txt", obtenerCodigoGraphvyz(f));
 
             ProcessBuilder proceso;
-            proceso = new ProcessBuilder("dot", "-Tpng", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".txt", "-o", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#20134470\\archivo" + v + ".png");
+            proceso = new ProcessBuilder("C:\\Program Files\\Graphviz\\bin\\dot.exe", "-Tpng", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#201344708\\archivo" + v + ".txt", "-o", "D:\\CLases\\Compi 1\\ExpAnalyzer\\arbol_#201344708\\archivo" + v + ".png");
             proceso.redirectErrorStream();
 
             proceso.start();
-            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes_#201344708\\archivo" + v + ".html"), stringHtml);
-
+            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes_#201344708\\Siguientes" + v + ".html"), stringHtml);
+            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Estados#201344708\\Estados" + v + ".html"), stringEstados);
         } catch (Exception e) {
             e.printStackTrace();
         }

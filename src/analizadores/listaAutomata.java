@@ -87,7 +87,7 @@ public class listaAutomata {
             // Recorre la lista hasta el final.
             while (aux != null) {
                 // Imprime en pantalla el valor del nodo.
-                System.out.print(i + ".[ " +aux.getEstado()+"-->"+ aux.getValor() + " ]" + " ->  ");
+                System.out.print(i + ".[ " + aux.getEstado() + "-->" + aux.getValor() + " ]" + " ->  ");
                 // Avanza al siguiente nodo.
                 aux = aux.getSiguiente();
                 // Incrementa el contador de la posión.
@@ -141,8 +141,70 @@ public class listaAutomata {
         }
         // Retorna el resultado de la bandera.
         return encontrado;
-        
-    }   public NodoAutomata buscarNodo(String referencia) {
+
+    }
+    public String buscarEstado(String y) {
+        // Verifica si la lista contiene elementoa.
+        String estado = "";
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            NodoAutomata aux = inicio;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while (aux != null) {
+                // Imprime en pantalla el valor del nodo.
+               // System.out.print(i + ".[ " + aux.getEstado() + "-->" + aux.getValor() + " ]" + " ->  ");
+                if(aux.getValor().equals(y)){
+                    estado = aux.getEstado();
+                    break;
+                }
+                // Avanza al siguiente nodo.
+                aux = aux.getSiguiente();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+        return estado;
+    }
+
+    public String buscarSiguietnes(String y) {
+        String estado = "";
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            NodoAutomata aux = inicio;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while (aux != null) {
+                // Imprime en pantalla el valor del nodo.
+                //System.out.print(i + ".[ " + aux.getEstado() + "-->" + aux.getValor() + " ]" + " ->  ");
+                //System.out.println("estado " + aux.getEstado());
+                //System.out.println("valor " + aux.getValor());
+                String[] parts2 = aux.getValor().split(",");
+                int[] hola2 = new int[parts2.length];
+                for (int a = 0; a < hola2.length; a++) {
+                    //System.out.println(parts2[a]);
+                    if (parts2[a].equals(y)) {
+                        //System.out.println("valor a buscar: " + y);
+                        //System.out.println("valor encontrado en:" + aux.getEstado());
+                        estado = aux.getEstado();
+                        break;
+                    }
+
+                }
+                // Avanza al siguiente nodo.
+                aux = aux.getSiguiente();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+        return estado;
+    }
+
+   
+
+public NodoAutomata buscarNodo(String referencia) {
         // Crea una copia de la lista.
         NodoAutomata aux = inicio;
         // Bandera para indicar si el valor existe.
@@ -151,7 +213,7 @@ public class listaAutomata {
         // llegar al final de la lista.
         while (aux != null && encontrado != true) {
             // Consulta si el valor del nodo es igual al de referencia.
-            if (referencia.equals(aux.getSiguientes())) {
+            if (referencia.equals(aux.getValor())) {
                 // Canbia el valor de la bandera.
                 encontrado = true;
             } else {
@@ -161,7 +223,9 @@ public class listaAutomata {
         }
         // Retorna el resultado de la bandera.
         return aux;
+
     }
+
     public void editarPorPosicion(int posicion, String valor) {
         // Verifica si la posición ingresada se encuentre en el rango
         // >= 0 y < que el numero de elementos del la lista.
