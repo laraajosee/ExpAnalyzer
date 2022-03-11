@@ -26,6 +26,7 @@ public class arbol {
     Random numAleatorio = new Random();
     int contadorDocumentos = 0;
     String stringHtml = "";
+    String stringAutomata = "";
     int contador = 1;
     int contadorID = 0;
     int contadorEstados = 1;
@@ -45,6 +46,7 @@ public class arbol {
         for (Nodo f : lista) {
             stringEstados = "";
             cabecera = "";
+            stringAutomata = "";
             listaa.perderLista();
             listaAutomata.perderLista();
             stringHtml = "";
@@ -218,6 +220,12 @@ public class arbol {
 
     }
     public void tablaEstados (Nodo f){
+         stringAutomata = "digraph finite_state_machine {\n" +
+"	fontname=\"Helvetica,Arial,sans-serif\"\n" +
+"	node [fontname=\"Helvetica,Arial,sans-serif\"]\n" +
+"	edge [fontname=\"Helvetica,Arial,sans-serif\"]\n" +
+"	rankdir=LR;\n" +
+"	node [shape = circle];";
         Queue queue = new LinkedList<String>();
         String[] parts = f.getPrimeros().split(",");
         int[] hola = new int[parts.length];
@@ -258,6 +266,8 @@ public class arbol {
                         + "  <td>" + b + "</td>\n"
                         + "  <td>" + c + "</td>\n"
                         + "  </tr>";
+            
+            stringAutomata +=  a+ "->"+ c +"[label = "+terminal+"];\n";
                 //System.out.println(transicion);
             
             
@@ -286,6 +296,7 @@ public class arbol {
                 + "</body>\n"
                 + "</html>\n";
          
+           stringAutomata += "}";
       
         
         
@@ -355,6 +366,13 @@ public class arbol {
             proceso.start();
             escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Siguientes_#201344708\\Siguientes" + v + ".html"), stringHtml);
             escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\Estados#201344708\\Estados" + v + ".html"), stringEstados);
+            escribirFichero(("D:\\CLases\\Compi 1\\ExpAnalyzer\\AFD#201344708\\archivo" + v + ".txt"), stringAutomata);
+            
+            ProcessBuilder p;
+            p = new ProcessBuilder("C:\\Program Files\\Graphviz\\bin\\dot.exe", "-Tpng", "D:\\CLases\\Compi 1\\ExpAnalyzer\\AFD#201344708\\archivo" + v + ".txt", "-o", "D:\\CLases\\Compi 1\\ExpAnalyzer\\AFD#201344708\\archivo" + v + ".png");
+            p.redirectErrorStream();
+
+            p.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
